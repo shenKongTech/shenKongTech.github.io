@@ -734,5 +734,31 @@ document.addEventListener('click', function(event)
             document.getElementById('loginForm').reset();
         }
 </script>
+<script>
+        // 获取弹窗遮罩和关闭按钮
+        const popupOverlay = document.getElementById('popupOverlay');
+        const closePopupBtn = document.getElementById('closePopupBtn');
+
+        // 页面加载时显示弹窗
+        window.onload = function() 
+        {
+            popupOverlay.style.display = 'flex'; // 显示弹窗
+        }
+
+        // 关闭弹窗的函数
+        closePopupBtn.onclick = function() 
+        {
+            popupOverlay.style.display = 'none'; // 隐藏弹窗
+        }
+
+        // 如果点击弹窗外部，也可以关闭弹窗
+        popupOverlay.onclick = function(event) 
+        {
+            if (event.target === popupOverlay) 
+            {
+                popupOverlay.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
