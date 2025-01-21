@@ -126,17 +126,22 @@
             display: inline-block;
     }
 
-    /* 汉堡菜单栏 */
-    #menu
-     {
-            position: fixed; /* 固定在页面上 */
-            background-color: #1E90FF; /* 设置菜单背景颜色 */
-            color: black; /* 设置字体颜色 */
-            width: 50%; /* 菜单宽度 */
-            height: 100%; /* 菜单全屏高度 */
-            display: none;
-            
-     }
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#menu {
+    position: fixed; /* 固定在页面上 */
+    top: 0; /* 确保从页面顶部开始 */
+    left: 0; /* 确保从页面左侧开始 */
+    background-color: white; /* 设置菜单背景颜色为白色，不透明 */
+    color: black; /* 设置字体颜色 */
+    width: 50%; /* 菜单宽度 */
+    height: 100%; /* 菜单全屏高度 */
+    display: none; /* 默认菜单隐藏 */
+    z-index: 9; /* 确保菜单在其他元素上方 */
+}
 
      #menu ul 
       {
