@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 核心移动端适配：强制让手机按1:1缩放，禁止用户缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <!-- 禁止iOS自动识别电话号码/邮箱 -->
+    <meta name="format-detection" content="telephone=no, email=no">
+    <!-- iOS桌面图标（添加后手机可添加到桌面，更像APP） -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://picsum.photos/id/237/180/180">
+    <!-- 安卓桌面图标 -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://picsum.photos/id/237/32/32">
     <title>Global AI Research Center | 全球AI研究中心</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -11,6 +18,82 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Tailwind 配置：新增移动端响应式细节 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6D28D9',
+                        secondary: '#8B5CF6',
+                        accent: '#EC4899',
+                        dark: '#0F172A',
+                        darker: '#030712',
+                        light: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 10px rgba(109, 40, 217, 0.5)' },
+                            '100%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.8), 0 0 30px rgba(236, 72, 153, 0.4)' },
+                        }
+                    }
+                },
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .bg-grid {
+                background-image: 
+                    linear-gradient(rgba(109, 40, 217, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(109, 40, 217, 0.1) 1px, transparent 1px);
+                background-size: 15px 15px; /* 移动端缩小网格密度，避免拥挤 */
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            /* 移动端触摸反馈优化 */
+            .touch-feedback {
+                -webkit-tap-highlight-color: rgba(139, 92, 246, 0.2);
+            }
+        }
+        
+        /* 修复移动端图表溢出问题 */
+        @media (max-width: 768px) {
+            canvas {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+            /* 移动端模型展示区高度适配 */
+            .mobile-model-height {
+                height: 400px !important;
+            }
+        }
+    </style>
     <!-- Tailwind 配置 -->
     <script>
         tailwind.config = {
