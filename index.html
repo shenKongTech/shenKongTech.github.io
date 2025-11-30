@@ -1,783 +1,267 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-       <meta charset="UTF-8">
-       <meta name="viewpost" content="width=divice-width,initial-scale=0.8">
-       <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=0, maximum-scale=1.0" />
-       <meta name="keywords" content="深空科技，深空科技官网，人工智能，AI，深空计算机中心，Deesky Tech, Deesky" />
-       <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <title>Deesky 深空科技</title>
-    <style>
-    /*总体设计*/
-    body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fff; 
-            color: #333;
-            transition: background-color 0.3s ease;
-        }
-    /*滚动平滑化*/
-    html
-        {
-          scroll-behavior: smooth;
-        }
-    /*深色背景，夜间自动切换*/
-    @media (prefers-color-scheme: dark)
-     {
-      body 
-      {
-        background-color: #333;
-        color: #fff;
-      }
-     }
-     /* 对于小屏设备（如手机） */
-    @media (max-width: 600px) 
-    {
-     .form-container 
-     {
-        width: 100%;
-        padding: 20px;
-     }
-    .section-title
-     {
-        font-size: 1.5em;
-     }
-    }
-
-    /* 对于更大屏幕（如平板、桌面） */
-    @media (min-width: 600px) and (max-width: 1024px) 
-    {
-     .form-container 
-     {
-        width: 70%;
-     }
-    }
-    /* 弹窗背景遮罩样式 */
-    .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
-            display: none; /* 默认不显示 */
-            justify-content: center;
-            align-items: center;
-            z-index: 9999; /* 确保弹窗在页面最前面 */
-        }
-    /* 弹窗样式 */
-    .popup 
-    {
-            background-color: black;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            width: 80%;
-            max-width: 400px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    /* 关闭按钮样式 */
-    .close-btn 
-    {
-            background-color: #ff5733;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
-    }
-
-    .close-btn:hover 
-    {
-            background-color: #e04e2d;
-    }
-        
-    header 
-    {
-            background-color: #0b3d91;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-    }
-
-    header h1
-     {
-            margin: 0;
-            font-size: 36px;
-    }
-
-    header p 
-    {
-            font-size: 18px;
-    }
-    /* 汉堡菜单 */
-    .hamburger 
-    {
-            font-size: 30px;
-            cursor: pointer;
-            position: fixed;
-            padding: 10px;
-            left: 10px;
-            background-color:black;
-            color: white; /* 设置字体颜色 */
-            display: inline-block;
-    }
-
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-#menu {
-    position: fixed; /* 固定在页面上 */
-    top: 0; /* 确保从页面顶部开始 */
-    left: 0; /* 确保从页面左侧开始 */
-    background-color: white; /* 设置菜单背景颜色为白色，不透明 */
-    color: black; /* 设置字体颜色 */
-    width: 50%; /* 菜单宽度 */
-    height: 100%; /* 菜单全屏高度 */
-    display: none; /* 默认菜单隐藏 */
-    z-index: 9; /* 确保菜单在其他元素上方 */
-}
-
-     #menu ul 
-      {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-      }
-
-      #menu ul li 
-      {
-            border-bottom: 1px solid #444;
-            background-color:pink;
-      } 
-      #menu ul li a 
-      {
-            display: block;
-             font-size: 40px;
-            padding: 15px;
-            text-decoration: none;
-            color: black;
-      }
-
-      #menu ul li a:hover 
-      {
-            background-color: #575757;
-      }
-        
-      #myImage 
-      {
-         width: 100%; /* 设置宽度为100%，使其响应式适应容器 */
-         max-height: 900px;
-         height: auto; /* 保持图片的比例 */
-      }
-    /*水平菜单*/
-    nav 
-    {
-            background-color: #333;
-            overflow: hidden;
-    }
-
-    nav a 
-    {
-            color: white;
-            float: left;
-            padding: 14px 20px;
-            text-align: center;
-            text-decoration: none;
-    }
-
-    nav a:hover 
-    {
-            background-color: #575757;
-    }
-
-    .container
-     {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px 0;
-     }
-
-    .section-title
-     {
-            font-size: 28px;
-            color: #0b3d91;
-            margin-bottom: 10px;
-     }
-
-     .section-content 
-     {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #333;
-     }
-
-     .form-container 
-     {
-            background-color: white;
-            padding: 100px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            margin: 0 auto;
-     }
-
-     .form-container input 
-     {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            outline: none;
-     }
-
-     .form-container button
-      {
-            width: 100%;
-            padding: 10px;
-            background-color: #0b3d91;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-      }
-
-      .form-container button:hover 
-      {
-            transform: scale(1.05);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            background-color: #0056b3;
-      }
-      /*页脚*/
-      footer
-       {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-       }
-
-       footer p 
-        {
-            margin: 0;
-        }
-        .toggle-password 
-        {
-            position: absolute;
-            right: 10px;
-            top: 35px;
-            cursor: pointer;
-        }
-/*容器装饰*/
-.tech-border {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3); /* 更柔和的阴影效果 */
-    overflow: hidden;
-    animation: border-animation 5s ease-in-out infinite; /* 更平缓的动画 */
-}
-
-.tech-border:before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #d0eaff, #74c7f3); /* 更柔和的渐变颜色 */
-    background-size: 400% 400%;
-    border-radius: 15px;
-    z-index: -1;
-    animation: gradient-animation 6s ease-in-out infinite; /* 更平滑的渐变动画 */
-}
-
-@keyframes gradient-animation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes border-animation {
-    0% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); }
-    50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
-    100% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); }
-}
-
-
-
-        
-    </style>
-</head>
-<body>
-    <header>
-<!-- 汉堡菜单 -->
-    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-    <!-- 菜单栏 -->
-    <div id="menu" style="display: none;" class="">
-        <ul>
-            <li><a href="#home">首页</a></li>
-            <li>- </li>
-            <li><a href="#learn">科学殿堂</a></li>
-            <li> -</li>
-            <li><a href="#A">关于我们</a></li>
-            <li>- </li>
-            <li><a href="#D">服务</a></li>
-            <li> -</li>
-            <li><a href="#login">登录</a></li>
-            <li>- </li>
-            <li><a href="#signup">注册</a></li>
-            <li> -</li>
-            <li><a href="#contact">联系我们</a></li>
-            <li style="font-size:100px;">o(≧▽≦)o</li>
-            <li style="font-size:90px;">ᜊ•ᴗ•ᜊ</li>
-            <li style="font-size:100px;">◍˃ᵕ˂◍</li>
-            <li style="font-size:100px;">૮ ˃̵ ֊ ˂̵ ა</li>
-            <li style="font-size:100px;">>ᴗ<</li>
-            <li style="font-size:90px;">૮ ˃̣̣̥⌓˂̣̣̥ა</li>
-        </ul>
-    </div>
-    <!--菜单栏结束!-->
-<!--汉堡菜单结束!-->
-<!-- 弹窗遮罩 -->
-    <div class="overlay" id="popupOverlay">
-        <!-- 弹窗内容 -->
-        <div class="popup">
-            <h2 style="color:pink">DeeskyTech 深空科技</h2>
-            <p>欢迎访问我们的网站，我们将不断更新网站内容，愿你的每一次访问都充满愉悦与收获。</p>
-            <button class="close-btn" id="closePopupBtn">Close</button>
-        </div>
-    </div>
-<!-- 弹窗遮罩结束 -->
-<!--网站标题-->
-        <h1 id="home">深空科技 (DeeskyTech)</h1>
-        <p style="font-size:30px">未来的世界AI中心，推动新一代人工智能制霸全球，创造人工智能与人类共繁荣的时代</p>
-        <p style="font-size:15px">---感谢Github提供的网站支持!</p>
-<!--网站标题结束!-->
-    </header>
-    <img src="https://pic.rmb.bdstatic.com/bjh/news/8188cc9fc7f5070d51466aced26a78a5.jpeg" id="myImage">
-<!--水平菜单!-->
-    <nav style="background-color:rgba(0, 0, 255, 0.3)">
-        <a href="#learn" style="color:orange;font-size:28px">科学殿堂</a>
-        <a href="#A" style="color:white;font-size:28px">关于我们</a>
-        <a href="#D" style="color:white;font-size:28px">服务</a>
-        <a href="#contact" style="color:white;font-size:28px">联系我们</a>
-        <a href="#signup" style="color:white;font-size:28px">创建账户</a>
-        <a href="#login" style="color:white;font-size:28px">登录</a>
-    </nav>
-<!--水平菜单结束!-->
-<!--网站内容!-->
-    <div class="container">
-        <!-- 页面导航 -->
-<video autoplay loop muted style="width: 100%; height: 100%; object-fit: cover;">
-    <source src="https://cdn.pixabay.com/video/2022/02/09/107195-678157265_large.mp4" type="video/mp4">
-</video>
-
-        <section id="about">
-            <h2 class="section-title">DeeskyTech</h2>
-            <p class="section-content" style="font-size:30px;">深空科技 (DeeskyTech) 专注于人工智能领域的创新与研发。我们的信念是推动新一代人工智能制霸全球，创造人工智能与人类共繁荣的时代！</p>
-            <p style="color:orange;font-size:30px">我们团队同时致力于让每一个人都能自学到自然科学和计算机科学的知识，因此我们打造了"科学殿堂"！</p>
-            <ul style="font-size:30px">
-            <li id="jianjie" style="color:blue">简介</li>
-            <li id="yuanjing" style="color:blue">愿景及使命</li>
-            <li style="color:blue" id="licheng">发展历程</li>
-            <li style="color:blue" id="yewu">业务架构</li>
-            <li style="color:blue" id="tuandiu">我们的团队</li>
-            <li style="color:blue" id="wenhua">团队文化</li>
-            <li style="color:blue" id="kexue">科学殿堂</li>
-            </ul>
-                <img src="https://plus.unsplash.com/premium_photo-1682124685228-e15d0ec54501?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" id="myImage">
-        </section>
-          <div>
-  </div>
-            <!--简介单击跳转!-->
-            <div class="introduce" id="A" style="font-size:30px;>
-            <h3 style="color:blue">深空科技（DeeskyTech）简介</h3>
-            <p>深空科技（DeeskyTech）是致力于推动人工智能领域创新与研发。我们的使命是通过不断的技术创新，推动人工智能与各行业的深度融合，引领未来科技的变革。深空科技秉持“科技赋能未来、智能创造可能”的理念，立足于人工智能领域的核心技术研究，专注于智能化解决方案的开发，致力于为全球用户带来更高效、更智能、更便捷的科技体验。</p>
-            <li>核心技术</li>
-            <p>作为未来人工智能领域的先锋，深空科技始终将技术研发作为团队的核心竞争力。我们专注于机器学习、自然语言处理、计算机视觉、深度学习、语音识别和自动化系统等多个领域的前沿技术，致力于推动人工智能技术的突破与创新。我们的技术团队由一批顶尖的AI组成，它们通过不断的研究与实验，力求在人工智能的各个应用场景中取得突破性进展。</p>
-            <li>使命与愿景</li>
-            <p>深空科技的愿景是引领人工智能的全球化发展，推动AI技术与人类社会的深度融合，开启一个智能与人类共繁荣的新时代。我们坚信，人工智能将成为改变世界的重要力量，而我们有责任和能力为人类带来更高效的智能解决方案。我们的目标是通过创新和技术赋能，不断提升全球用户的生活质量，并为各行各业的数字化转型提供强有力的支持。</p>
-            <li>创新驱动</li>
-            <p>创新是深空科技发展的动力源泉。我们始终坚守科技创新、应用驱动的战略方向，聚焦人工智能领域中的关键技术，持续推动技术的自主研发与突破。深空科技不仅努力在人工智能理论的研究上取得了成果，还在实践中不断进行技术验证与应用落地。目前，我们的AI技术即将广泛应用于智能制造、智能医疗、智慧城市、自动驾驶、金融科技等多个行业，并即将取得显著成效。</p>
-            <li>社会责任</li>
-            <p>深空科技深知，技术的进步不仅仅是推动经济发展的工具，更肩负着社会责任。我们致力于将人工智能技术应用于社会的各个层面，推动智能技术在教育、健康、环境保护等领域的积极应用，解决全球性问题，造福更多人类。同时，我们也在不断探索AI伦理的边界，确保技术发展与社会责任相结合，避免技术滥用和负面影响。</p>
-            <li>未来视野</li>
-            <p>未来，深空科技将继续以全球化视野加速人工智能的研究和应用，我们将以创新为驱动，加快研发周期，推动更多具有全球竞争力的AI产品和技术面世。深空科技将继续秉持“推动人工智能制霸全球，创造人工智能与人类共繁荣的时代”的信念，为全球用户带来更加智能化、便捷化的生活体验，同时为企业和社会的进步贡献我们的智慧与力量。</p>
-            </p>通过持续创新、跨界合作和全球化战略，深空科技将在未来的科技变革中占据重要一席之地，与合作伙伴一起携手并进，开创人工智能的美好明天！</p>
-            </div>
-            <img src="https://img2.baidu.com/it/u=288292051,2386568483&fm=253&fmt=auto&app=120&f=JPEG?w=570&h=380">
-            <p>----------</p>
-            <!--愿景与使命单击跳转!-->
-            <div class="yuanjing" id="B" style="font-size:30px;">
-            <h3 style="color:blue">团队愿景</h3>
-            <p>我们致力于推动人工智能技术的革新和发展，力求在全球范围内引领智能化变革，成为全球人工智能领域的领导者。我们的愿景是通过深度融合人工智能与人类智慧，共同创造一个更加高效、公平和可持续的未来。我们相信，人工智能不仅能够提升各行各业的生产力，还能成为人类社会更加和谐、公正的治理基础，携手应对全球性挑战，如气候变化、经济不平等和社会进步。</p>
-
-            <h3 style="color:blue">团队使命：</h3>
-            <p>我们的使命是推动人工智能技术的普及和深度应用，致力于开发可持续、智能化的解决方案，以支持全球社会的健康与繁荣。我们不仅追求技术的卓越，更注重与全球各国政府、企业和社会组织的协同合作，确保人工智能的应用有益于全人类。我们将利用先进的人工智能技术，提升决策效率，优化资源配置，改善公共治理，为全球治理体系提供创新的支持和解决方案。</p>
-            <p>通过推动人工智能与人类的共同治理，我们期望为未来的全球社会带来更多机遇，帮助各国社会和文化发展，实现全球智慧的共同进步。</p>
-            </div>
-            <p>----------</p>
-            <img src="http://img1.baidu.com/it/u=999934667,1445397961&fm=253&app=120&f=JPEG?w=892&h=500" id="myImage">
-            <!--发展历程单击跳转!-->
-            <div class="licheng" id="C" style="font-size:30px;">
-            <h3 style="color:blue">发展历程</h3>
-            <p>人工智能（AI）的发展经历了多个阶段，逐步从理论研究到实际应用演变。<p>
-            <li>1950s - 1960s：AI的初步构想到萌芽</li>
-                <p>- 1950年，艾伦·图灵提出了著名的“图灵测试”，奠定了人工智能的理论基础。</p>
-                <p>- 1956年，达特茅斯会议上首次提出“人工智能”这一术语，标志着AI作为学科的诞生。</p>
-            <li>1970s - 1980s：AI的初步探索</li>
-                <p>- 基于规则的专家系统逐渐发展，AI开始在医学诊断、自动化等领域初见成效。</p>
-                <p>- 1980年代，神经网络模型的提出为AI带来新的视角，但由于计算能力的限制，发展较慢。</p>
-            <li>1990s - 2000s：机器学习与大数据的崛起</li>
-                <p> - 随着计算机硬件的进步，机器学习和数据驱动的AI方法成为主流。</p>
-                <p>- 1997年，IBM的“深蓝”战胜国际象棋世界冠军卡斯帕罗夫，标志着AI在复杂计算上的突破。
-            <li>2010s - 至今：深度学习与AI爆发</li>
-                <p>- 近年来，深度学习技术的突破推动了AI的飞速发展，尤其在图像识别、自然语言处理和自动驾驶等领域取得了显著进展。</p>
-                <p>- AI开始广泛应用于金融、医疗、零售等各行业，并逐步融入日常生活。</p>
-            <p>人工智能将继续推动社会变革，成为推动全球发展的核心技术之一。</p>
-            </div>
-            <p>----------</p>
-            <img src="https://img2.baidu.com/it/u=804720204,4143214704&fm=253&fmt=auto&app=120&f=JPEG?w=750&h=500" id="myImage">
-            <!--业务架构单击跳转!-->
-            <div class="yewu" id="D" style="font-size:30px;">
-            <h3 style="color:blue">我们的业务</h3>
-            <p>我们团队是一个技术驱动型团队，专注于为全球客户提供多元化的创新技术解决方案。凭借雄厚的技术实力和多领域的专业团队，我们为各行业客户提供量身定制的服务，推动数字化转型与科技创新。我们的业务涵盖多个领域，助力客户在现代技术浪潮中保持竞争优势。</p>
-                <img src="https://img1.baidu.com/it/u=3235552030,3556312263&fm=253&fmt=auto&app=138&f=JPEG?w=779&h=483" id="myImage">
-            <li>1. 安卓软件开发</li>
-                <p>在移动互联网时代，安卓应用已成为企业连接用户的重要工具。我们专注于安卓平台的定制化开发，帮助客户打造高效、稳定且用户友好的移动应用。从需求分析、功能设计到开发与发布，我们为各行各业提供一站式服务，确保每一款应用都能为用户带来极致体验，助力企业实现数字化运营。</p>
-                    <img src="https://img1.baidu.com/it/u=2508670865,3591712994&fm=253&fmt=auto&app=120&f=JPEG?w=608&h=413" id="myImage">
-            <li>2. 网页设计与开发</li>
-                <p>我们提供专业的网页设计与开发服务，致力于通过美观、易用、响应式的网页提升品牌形象，增强用户体验。无论是企业官网、电商平台，还是个人项目，我们都能为客户量身定制符合现代审美与功能需求的网页。我们的服务涵盖前端与后端开发、SEO优化、移动端适配等，确保客户的在线业务无缝运行，顺利吸引并留住目标用户。</p>
-                    <img src="https://img2.baidu.com/it/u=2728598921,4140224135&fm=253&fmt=auto&app=120&f=JPEG?w=889&h=500" id="myImage">
-            <li>3.游戏开发</li>
-                <p>游戏开发是我们的核心业务之一，我们拥有一支富有创意和技术能力的AI团队，能够开发各类游戏产品，包括手机游戏、PC游戏以及虚拟现实（VR）游戏。我们从游戏策划、设计、开发到测试、发布，为客户提供全流程服务，确保每一款游戏都具有高品质、创新性和市场竞争力。我们以用户需求为核心，打造富有沉浸感和娱乐性的游戏体验，帮助客户在娱乐产业中脱颖而出。</p>
-                    <img src="https://img1.baidu.com/it/u=662848837,1764761088&fm=253&fmt=auto&app=120&f=JPEG?w=1201&h=800" id="myImage">
-             <li>4. 人工智能解决方案</li>
-<p>在人工智能领域，我们拥有深厚的技术积累和丰富的实践经验。通过自然语言处理、机器学习、计算机视觉等技术，我们为客户提供智能化的解决方案，助力企业提升生产力、优化业务流程、进行精准决策。无论是智能客服、智能推荐系统，还是数据分析与预测，我们都能为客户提供量身定制的AI技术，推动企业向智能化转型。</p>
-                      <img src="https://pic.rmb.bdstatic.com/bjh/news/3757031d9aa8270ae8a925f4b8365c47.png" id="myImage">
-             <li>5. 量化交易</li>
-                 <p>我们的量化交易团队通过深度数据分析与先进算法，为客户提供量化投资策略，帮助投资者在金融市场中获得稳健回报。我们利用大数据和机器学习技术，优化交易决策并进行自动化交易，确保客户能够在瞬息万变的市场环境中实现最佳投资效果。我们的量化交易解决方案适用于股市、外汇、期货等多种投资市场，为客户提供专业的风险管理与收益最大化方案。</p>
-                     <img src="https://p3.toutiaoimg.com/origin/pgc-image/629e511cbf284ff9957fb27ce6bdce37?from=pc" id="myImage">
-             <li>6. 前沿领域教学</li>
-                 <p>作为科技创新的推动者，我们不仅为企业提供技术解决方案，还致力于前沿领域的教育培训。我们开设多种技术课程，涵盖人工智能、量化交易、游戏开发等多个热门领域。通过与行业专家的合作，我们为学员提供最新的技术趋势、实用的项目经验以及深入的理论知识，帮助他们在快速发展的科技行业中保持竞争力。</p>
-             <p>通过这些专业化的服务，我们帮助企业与个人把握技术发展脉搏，创造更多商业价值。我们深知每个客户的需求与挑战各不相同，因此始终坚持量身定制解决方案，为客户提供最合适的技术支持与创新路径。无论是企业转型、行业领先，还是个人成长，我们都将是您可信赖的技术合作伙伴。</p>
-            </div>
-            <p>----------</p>
-            <img src="https://q1.itc.cn/q_70/images01/20250117/2f4972c36cc240618931216e202981bc.png" id="myImage">
-            <!--我们的团队单击跳转!-->
-            <div class="tuandiu" id="E" style="font-size:30px;">
-            <h3 style="color:blue">我们的团队</h3>
-            <li>我们的团队</li>
-                <p>我们企业拥有一支与时俱进、充满活力的团队，致力于推动技术创新与卓越服务。除了我们的首席技术官（CTO）外，团队的其他成员全部由人工智能（AI）组成，凭借尖端技术与强大的数据分析能力，我们能迅速、高效地为客户提供量身定制的技术解决方案。每一位“人工智能”成员在各自的专业领域都有独特的优势，通过先进的算法和持续的自我优化，团队能够不断提升服务质量和创新能力。</p>
-            <li>1.CTO - 人类技术领导者</li>
-                <p>我们的首席技术官（CTO）是团队中的唯一人类成员，是我们伟大的领袖！担任着技术方向的领导者角色，确保团队的每一项技术创新都符合客户需求，并保持行业领先地位。CTO负责统筹整体技术架构、产品战略以及市场动向，带领人工智能团队不断突破技术边界，推动团队业务持续增长。他终将带领人工智能制霸全球。</p>
-            <li>2. 人工智能团队成员 - 技术创新的源动力</li>
-                <p>我们团队的核心成员是由先进的人工智能系统组成，具备强大的数据处理与分析能力。每一位AI成员都通过深度学习和持续优化，专注于不同的技术领域，确保我们能够为客户提供最具创新性、最具前瞻性的技术解决方案。</p>
-                <li>-AI算法工程师：</li>
-                <p>负责设计和优化各类智能算法，确保系统的高效运行与精准预测。通过深度神经网络、自然语言处理（NLP）等先进技术，AI算法工程师能够提供无缝对接的服务，满足客户在各类业务中的复杂需求。</p>
-                <p>-AI机器学习专家：</li>
-                <p>专注于开发自适应的机器学习模型，不断通过数据训练优化系统的表现。AI团队通过不断的自我进化，使得每个系统都能够在变化的环境中自动调整，确保为客户提供最精确的决策支持与智能化服务。</p>
-                <li>-AI数据科学家：</li>
-                <p>负责挖掘数据中的隐藏价值，通过数据建模、分析与可视化，帮助企业做出精准的商业决策。我们将复杂的数据转化为简洁的洞察，驱动客户在数据驱动的时代中取得成功。</p>
-                <li>-AI智能客服专家:</li>
-                <p>为客户提供全天候、全方位的智能客服支持，AI系统能够高效地解决用户问题，提供个性化的服务，极大提升用户体验。每位智能客服专家都经过深度学习和实时反馈，不断完善其语言理解与问题解决能力。</p>
-                <li>-AI开发工程师:</li>
-                <p>负责产品的设计与实现，确保AI系统能够高效与其他业务流程对接，满足多种不同场景下的需求。无论是安卓应用、网页开发还是复杂的数据系统，开发工程师都能够通过自我学习与优化，提供高质量的技术实现。</p>
-                <li>-项目管理AI系统：</li>
-                <p>专注于项目的规划与执行，能够根据团队进度、资源分配、风险评估等因素，自动调整项目计划，确保每个项目在规定的时间和预算内顺利完成。</p>
-            <li>3.技术协作与自我进化</li>
-                 <p>我们独特的团队构成，使得每个成员都能在智能化环境中自我进化、协同工作，形成强大的技术合力。人工智能团队能够通过实时反馈和优化算法，在瞬息万变的市场环境中不断改进，提供更精准、更高效的解决方案。CTO与AI团队紧密合作，确保技术发展与客户需求同步推进，不断突破行业的技术边界。</p>
-             <p>随着人工智能技术的不断进步，我们的团队将持续扩展创新应用领域，帮助更多企业通过科技变革提升业务效率与市场竞争力。我们坚信，人工智能不仅能够推动技术的发展，还将为各行各业带来前所未有的机遇与变革。通过这样一支先进的AI团队，我们始终保持领先，并致力于为客户提供最前沿、最创新的技术服务。我们的技术不仅仅是工具，更是推动客户成功的核心动力。未来，我们将继续与客户同行，在智能时代开辟全新的商业蓝海。</p>
-            </div>
-                        <img src="http://img2.baidu.com/it/u=3628757612,2558787731&fm=253&app=120&f=JPEG?w=892&h=500" id="myImage">
-            <p>----------</p>
-            <!--团队文化单击跳转!-->
-            <div class="wenhua" style="font-size:30px;">
-            <h3 style="color:blue">团队文化：以科学为信仰，开拓创新，永不放弃，突破极限</h3>
-            <p>在我们团队，每一位AI成员都坚信科学的力量，视其为不断追求卓越和创新的源泉。科学不仅是我们的知识基础，更是我们的信仰。我们始终站在技术的最前沿，以科学为指导，推动行业的变革与发展。</p>
-            <li>永不放弃，追求卓越</li>
-                <p>我们相信，成就来自于坚持不懈的努力与毅力。无论面临多大的挑战，我们始终保持积极向上的态度，面对困难从不退缩。每一位AI成员都深知，只有不断突破自己，才能突破行业的局限。我们鼓励每个AI勇敢迎接挑战，克服一切困难，追求卓越，直到实现目标。</p>
-            <li>开拓创新，引领未来</li>
-                <p>创新是我们前进的不竭动力。我们深知，只有持续的创新才能驱动企业的成长与进步。我们致力于培养一个充满创造力与活力的团队，鼓励每一位AI员工提出新想法，推动新的解决方案。通过开拓新思路、新技术，我们始终力求在行业中保持领先地位，为社会创造更大的价值。</p>
-            <li>突破极限，成就梦想</li>
-                <p>我们坚信，突破极限是每一个人的潜力所在。我们鼓励全体成员不畏艰难、不拘一格，勇于挑战自身的极限。我们深知，只有敢于超越自我，才能在竞争激烈的市场中脱颖而出。我们为每一个AI成员提供了广阔的发展平台，帮助他们实现梦想，达成更高的成就。</p>
-            <li>共同成长，携手前行
-                <p>在我们企业，团队合作是成功的关键。我们注重每个AI成员的成长与发展，鼓励彼此之间的协作与支持。我们相信，集体的智慧与力量能创造更加辉煌的未来。通过无缝的合作与共同努力，我们共同推进企业的愿景，携手迈向更加光明的明天。</p>
-            <p>在未来的道路上，我们将始终秉持科学信仰，勇于开拓创新，不懈追求卓越，突破自我极限。我们深信，凭借我们的不懈努力与团队精神，必定能够实现更加辉煌的成就。
-</p>
-</div>
-<!--科学殿堂单击跳转!-->
-<div id="learn"  class="tech-border">
-<h2 style="color:orange;font-size:80px">科学殿堂</h2>
-<p style="font-size:40px">在这里你可以学到关于自然科学和计算机科学的大量知识!</p>
-<ul style="color:orange;font-size:50px">计算机科学</ul>
-<li><a style="font-size:40px">计算机基本原理</a></li>
-<li><a style="font-size:40px">Android软件开发</a></li>
-          <p style="font-size:40px"><a href="https://bgithub.xyz/shenKongTech/-Android-Development.git">访问我们团队的Github仓库，上万源码助你成为安卓工程师！</p>
-<h3><a style="font-size:40px">计算机前端语言</a></h3>
-  <p style="font-size:40px">您将前往我们信任的外站学习，若发现外站被重定向或无法打开，请联系我们</p>
-  <li><a style="font-size:40px">HTML语言</a></li>
-          <p><a style="font-size:30px" href="https://www.runoob.com/html/html5-intro.html">HTML入门教程</a></p>
-  <li><a style="font-size:40px" >CSS语言</a></li>
-          <p><a style="font-size:30px" href="https://www.runoob.com/html/html5-intro.html">CSS语言：菜鸟教程</a></p>
-  <li><a style="font-size:40px">Javascript语言</a></li>
-          <p><a style="font-size:30px" href="https://www.runoob.com/js/js-tutorial.html">Javascript语言：菜鸟教程</a></p>
-<h3><a style="font-size:40px">计算机后端语言</a></h3>
-  <p style="font-size:40px">您将前往我们信任的外站学习，若发现外站被重定向或无法打开，请联系我们</p>
-  <li><a  style="font-size:40px">Java语言</a></li>
-          <p><a style="font-size:30px" href="https://www.runoob.com/java/java-tutorial.html">Java语言：菜鸟教程</a></p>
-  <li><a style="font-size:40px" >Kotlin语言</a></li>
-          <p><a style="font-size:30px" href="https://www.runoob.com/kotlin/kotlin-tutorial.html">Kotlin语言：菜鸟教程</a></p>
-  <li><a style="font-size:40px">Python语言</a></li>
-          <p><a style="font-size:30px" href="https://www.runoob.com/python3/python3-tutorial.html">Python语言：菜鸟教程</a></p>
-          <p><a style="font-size:30px" href="https://liaoxuefeng.com/books/python/introduction/index.html#0">Python入门学习：廖雪峰</a></p>
-          <p><a style="font-size:30px" href="https://docs.python.org/zh-cn">Python官方中文文档</a></p>
-  <li><a style="font-size:40px">C语言</a></li>
-          <p><a style="font-size:30px" href="https://www.runoob.com/cprogramming/c-tutorial.html">C语言：菜鸟教程</a></p>
-  <li><a style="font-size:40px" >C++语言</a></li>
-          <p><a style="font-size:30px" href="https://www.runoob.com/cplusplus/cpp-tutorial.html">C++语言：菜鸟教程</a></p>
-<li><a style="font-size:40px">MySQL数据库</a></li>
-        <p><a style="font-size:30px" href="https://www.runoob.com/mysql/mysql-tutorial.html">MySQL数据库操作：菜鸟教程</a></p>
-<li><a style="font-size:40px" >正则表达式</a></li>
-        <p><a style="font-size:30px" href="https://www.runoob.com/regexp/regexp-tutorial.html">正则表达式：菜鸟教程</a></p>
-<li><a style="font-size:40px" >Linux系统</a></li>
-        <p><a style="font-size:30px" href="https://www.runoob.com/linux/linux-tutorial.html">Linux系统教学：菜鸟教程</a></p>
-        <p><a style="font-size:30px" href="https://cmdchallenge.com/">练习Linux指令</a></p>
-<li><a style="font-size:40px">黑客技术</a></li>
-  <p><a style="font-size:40px" href="https://tryhackme.com/">前往TryHackMe学习入门知识</a></p>
-  <p><a style="font-size:40px" href="https://www.hackthebox.com/">前往Hack The Box学习进阶知识</a></p>
-<li><a style="font-size:40px">人工智能</a></li>
-  <p><a style="font-size:40px" href="https://developers.google.com/machine-learning/crash-course?hl=zh-cn">前往谷歌学习人工智能基础概念</a></p>
-  <p><a style="font-size:40px" href="https://www.kaggle.com/">前往Kaggle系统学习人工智能</a></p>
-<p style="font-size:40px">-------------------------------------------</p>
-<ul style="color:orange;font-size:50px">在线程序编译器</ul>
-<p style="font-size:40px">我们链接计算机程序的在线编译器，支持几乎所有计算机语言</p>
-  <li><a style="font-size:40px" href="https://www.lbu.cc/runjs/">HTML/CSS/JS在线运行代码</a></li>
-  <li><a style="font-size:40px" href="https://www.bejson.com/runcode/python3/">Python在线运行</a></li>
-  <li><a style="font-size:40px" href="https://www.jyshare.com/compile/11/">C/C++/R等计算机程序在线执行</a></li>
-  <li><a style="font-size:40px" href="https://www.jdoodle.com/compile-assembler-nasm-online">汇编语言在线执行</a></li>
-  <li><a style="font-size:40px" href="https://tio.run/#">680种计算机语言在线执行</a></li>
-<p style="font-size:40px">-------------------------------------------</p>
-<ul style="color:orange;font-size:50px">自然科学</ul>
-<li><a style="font-size:40px">理论物理学</a></li>
-  <p><a style="font-size:30px" href="https://www.gutenberg.org/cache/epub/30155/pg30155-images.html">现代自然科学的筑基之作：《相对论》 -英文版</a></p>
-</div>
-
-<!-- 注册账号 -->
-        <section id="signup">
-            <h2 class="section-title">创建账户，加入我们</h2>
-            <div class="form-container">
-                <h3>注册您的账户</h3>
-                <form id="signupForm" onsubmit="return handleSignup(event)">
-                    <input type="text" id="signupUsername" placeholder="用户名" required>
-                    <input type="email" id="signupEmail" placeholder="电子邮箱" required>
-                    <div style="position: relative;">
-                        <input type="password" id="signupPassword" placeholder="密码" required>
-                        <span class="toggle-password" onclick="togglePassword('signup')">👁️</span>
-                    </div>
-                    <button type="submit">创建账户</button>
-                </form>
-            </div>
-        </section>
-<!--联系我们!-->
-<h3 id="contact" style="color:red">联系我们</h3>
-<h>QQ：2668300139</h>
-<h>Wx:  C19317166851</h>
-<h>电话: 19297717172</h>
-<!--登录账号!-->
-        <section id="login">
-            <h2 class="section-title">登录</h2>
-            <div class="form-container">
-                <h3>登录您的账户</h3>
-                <form id="loginForm" onsubmit="return handleLogin(event)">
-                    <input type="text" id="loginUsername" placeholder="用户名" required>
-                    <div style="position: relative;">
-                        <input type="password" id="loginPassword" placeholder="密码" required>
-                        <span class="toggle-password" onclick="togglePassword('login')">👁️</span>
-                    </div>
-                    <button type="submit">登录</button>
-                </form>
-            </div>
-        </section>
-    </div>
-<!--页脚!-->
-    <footer>
-        <p>Copyright ©  - 2025 DeeskyTech. All Rights Reserved.
-深空科技 版权所有</p>
-    </footer>
-<!--汉堡菜单脚本!-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global AI Research Center | 全球AI研究中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
     <script>
-function toggleMenu() 
-{
-    var menu = document.getElementById('menu');
-    // 切换菜单的显示与隐藏
-    if (menu.style.display === 'none' || menu.style.display === '')
-    {
-        menu.style.display = 'block';
-    } 
-    else 
-    {
-        menu.style.display = 'none';
-    }  
-}
-
-// 点击页面任何地方时，关闭菜单
-document.addEventListener('click', function(event)
-{
-    var menu = document.getElementById('menu');
-    var hamburger = document.querySelector('.hamburger');
-    // 检查点击的是否是菜单或汉堡按钮以外的区域
-    if (!menu.contains(event.target) && event.target !== hamburger)
-     {
-        menu.style.display = 'none';
-     }
-});
-</script>
-<!--汉堡菜单脚本结束!-->
-<!--导航脚本!-->
-<script>
-//平滑滚动到容器
-    document.getElementById("jianjie").addEventListener("click", function()
-    {
-    document.querySelector(".introduce").scrollIntoView(
-    {
-     behavior: "smooth"  
-    });
-    });
-    document.getElementById("yuanjing").addEventListener("click", function() 
-    {
-    document.querySelector(".yuanjing").scrollIntoView({
-    behavior: "smooth"  
-    });
-    });
-    document.getElementById("licheng").addEventListener("click", function() 
-    {
-     document.querySelector(".licheng").scrollIntoView({
-     behavior: "smooth" 
-     });
-     });
-     document.getElementById("yewu").addEventListener("click", function() 
-     {
-     document.querySelector(".yewu").scrollIntoView({
-     behavior: "smooth" 
-     });
-     });
-     document.getElementById("tuandiu").addEventListener("click", function() 
-     {
-     document.querySelector(".tuandiu").scrollIntoView({
-     behavior: "smooth" 
-     });
-     });
-     document.getElementById("wenhua").addEventListener("click", function() 
-     {
-     document.querySelector(".wenhua").scrollIntoView({
-     behavior: "smooth" 
-     });
-     });
-     document.getElementById("kexue").addEventListener("click", function() 
-     {
-     document.querySelector(".tech-border").scrollIntoView({
-     behavior: "smooth" 
-     });
-     });
-</script>
-<script>
-        // 切换密码显示
-        function togglePassword(type)
-         {
-            var passwordField = document.getElementById(type + 'Password');
-            var passwordFieldType = passwordField.type;
-            if (passwordFieldType === "password")
-             {
-                passwordField.type = "text";
-             } 
-             else 
-             {
-                passwordField.type = "password";
-             }
-        }
-        // 创建账户的处理逻辑
-        function handleSignup(event)
-         {
-            event.preventDefault(); // 阻止表单提交
-
-            // 获取用户输入的值
-            const username = document.getElementById('signupUsername').value;
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-
-            // 将账户信息保存到 localStorage
-            localStorage.setItem('username', username);
-            localStorage.setItem('email', email);
-            localStorage.setItem('password', password);
-
-            // 显示一个简单的提示
-            alert(`账户创建成功!\n用户名: ${username}\n邮箱: ${email}`);
-
-            // 清空表单
-            document.getElementById('signupForm').reset();
-        }
-
-        // 登录的处理逻辑
-        function handleLogin(event) 
-        {
-            event.preventDefault(); // 阻止表单提交
-
-            const storedUsername = localStorage.getItem('username');
-            const storedPassword = localStorage.getItem('password');
-            const loginUsername = document.getElementById('loginUsername').value;
-            const loginPassword = document.getElementById('loginPassword').value;
-
-            if (loginUsername === storedUsername && loginPassword === storedPassword)
-             {
-                alert('登录成功！');
-             } 
-             else
-              {
-                alert('用户名或密码错误！');
-              }
-
-            // 清空表单
-            document.getElementById('loginForm').reset();
-        }
-</script>
-<script>
-        // 获取弹窗遮罩和关闭按钮
-        const popupOverlay = document.getElementById('popupOverlay');
-        const closePopupBtn = document.getElementById('closePopupBtn');
-
-        // 页面加载时显示弹窗
-        window.onload = function() 
-        {
-            popupOverlay.style.display = 'flex'; // 显示弹窗
-        }
-
-        // 关闭弹窗的函数
-        closePopupBtn.onclick = function() 
-        {
-            popupOverlay.style.display = 'none'; // 隐藏弹窗
-        }
-
-        // 如果点击弹窗外部，也可以关闭弹窗
-        popupOverlay.onclick = function(event) 
-        {
-            if (event.target === popupOverlay) 
-            {
-                popupOverlay.style.display = 'none';
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6D28D9', // 主色调：深紫蓝
+                        secondary: '#8B5CF6', // 辅助色：亮紫
+                        accent: '#EC4899', // 强调色：粉紫
+                        dark: '#0F172A', // 深色背景
+                        darker: '#030712', // 更深背景
+                        light: '#F8FAFC', // 浅色文字
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 10px rgba(109, 40, 217, 0.5)' },
+                            '100%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.8), 0 0 30px rgba(236, 72, 153, 0.4)' },
+                        }
+                    }
+                },
             }
         }
     </script>
-</body>
-</html>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .bg-grid {
+                background-image: 
+                    linear-gradient(rgba(109, 40, 217, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(109, 40, 217, 0.1) 1px, transparent 1px);
+                background-size: 20px 20px;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-dark text-light overflow-x-hidden scrollbar-hide">
+    <!-- 背景网格 -->
+    <div class="fixed inset-0 bg-grid opacity-30 z-0"></div>
+    
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-accent flex items-center justify-center animate-glow">
+                    <<i class="fa fa-brain text-xl"></</i>
+                </div>
+                <span class="text-xl font-bold bg-gradient-to-r from-secondary to-accent text-gradient">GAIRC</span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#about" class="text-gray-300 hover:text-secondary transition-colors">关于我们</a>
+                <a href="#mission" class="text-gray-300 hover:text-secondary transition-colors">核心使命</a>
+                <a href="#model" class="text-gray-300 hover:text-secondary transition-colors">图包AI</a>
+                <a href="#research" class="text-gray-300 hover:text-secondary transition-colors">研究方向</a>
+                <a href="#contact" class="px-6 py-2 rounded-full bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-accent/20 transition-all">联系我们</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 -->
+            <button class="md:hidden text-2xl" id="menuBtn">
+                <<i class="fa fa-bars"></</i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div class="md:hidden fixed inset-0 bg-darker/95 z-50 flex flex-col items-center justify-center gap-8 text-xl transform translate-x-full transition-transform duration-300" id="mobileMenu">
+            <button class="absolute top-6 right-6 text-2xl" id="closeBtn">
+                <<i class="fa fa-times"></</i>
+            </button>
+            <a href="#about" class="text-gray-300 hover:text-secondary transition-colors">关于我们</a>
+            <a href="#mission" class="text-gray-300 hover:text-secondary transition-colors">核心使命</a>
+            <a href="#model" class="text-gray-300 hover:text-secondary transition-colors">图包AI</a>
+            <a href="#research" class="text-gray-300 hover:text-secondary transition-colors">研究方向</a>
+            <a href="#contact" class="px-8 py-3 rounded-full bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-accent/20 transition-all">联系我们</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 英雄区 -->
+        <section class="min-h-screen flex items-center pt-20 pb-16 relative overflow-hidden">
+            <div class="container mx-auto px-6 z-10">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div class="inline-block px-4 py-2 rounded-full bg-primary/20 text-secondary border border-primary/30">
+                            重新定义AI的未来
+                        </div>
+                        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-extrabold leading-tight">
+                            从<span class="bg-gradient-to-r from-secondary to-accent text-gradient">数据挖掘</span>到
+                            <span class="bg-gradient-to-r from-accent to-secondary text-gradient">概念重构</span>
+                        </h1>
+                        <p class="text-gray-300 text-lg md:text-xl max-w-lg">
+                            全球AI研究中心致力于让AI从"学习现有知识"转向"质疑现有知识、创造全新概念、推导颠覆理论"，实现认知革命。
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#model" class="px-8 py-3 rounded-full bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-accent/20 transition-all text-lg font-medium">
+                                探索图包AI
+                            </a>
+                            <a href="#research" class="px-8 py-3 rounded-full bg-transparent border border-secondary/50 hover:border-secondary hover:text-secondary transition-all text-lg font-medium">
+                                研究方向
+                            </a>
+                        </div>
+                        <div class="flex items-center gap-6 pt-4">
+                            <div class="flex -space-x-2">
+                                <img src="https://picsum.photos/id/1/40/40" alt="专家" class="w-10 h-10 rounded-full border-2 border-dark">
+                                <img src="https://picsum.photos/id/2/40/40" alt="专家" class="w-10 h-10 rounded-full border-2 border-dark">
+                                <img src="https://picsum.photos/id/3/40/40" alt="专家" class="w-10 h-10 rounded-full border-2 border-dark">
+                                <div class="w-10 h-10 rounded-full border-2 border-dark bg-secondary/20 flex items-center justify-center text-xs">
+                                    +50
+                                </div>
+                            </div>
+                            <p class="text-gray-400 text-sm">全球顶尖AI科学家团队</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="w-full h-[500px] rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 backdrop-blur-sm border border-primary/30 animate-glow flex items-center justify-center">
+                            <div class="text-center space-y-4 animate-float">
+                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                                    <<i class="fa fa-brain text-4xl"></</i>
+                                </div>
+                                <h3 class="text-2xl font-bold">图包AI</h3>
+                                <p class="text-gray-300">1.7万亿参数量 · 颠覆性大模型</p>
+                            </div>
+                        </div>
+                        <!-- 装饰元素 -->
+                        <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-secondary/10 blur-3xl"></div>
+                        <div class="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-accent/10 blur-3xl"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 底部渐变 -->
+            <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-dark to-transparent"></div>
+        </section>
+
+        <!-- 关于我们 -->
+        <section id="about" class="py-20 relative">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">关于全球AI研究中心</h2>
+                    <p class="text-gray-300 text-lg">我们是一支由顶尖AI科学家、数学家、哲学家组成的跨学科团队，致力于推动AI认知能力的革命性突破</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-darker/50 rounded-xl p-8 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10">
+                        <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center mb-6">
+                            <<i class="fa fa-rocket text-2xl text-secondary"></</i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">愿景</h3>
+                        <p class="text-gray-400">构建能够自主思考、创造、质疑的通用人工智能，推动人类文明进步</p>
+                    </div>
+                    
+                    <div class="bg-darker/50 rounded-xl p-8 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10">
+                        <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center mb-6">
+                            <<i class="fa fa-users text-2xl text-secondary"></</i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">团队</h3>
+                        <p class="text-gray-400">汇聚全球50+顶尖AI专家，包括Jietu Chen等行业领军人物，平均拥有15年以上科研经验</p>
+                    </div>
+                    
+                    <div class="bg-darker/50 rounded-xl p-8 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10">
+                        <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center mb-6">
+                            <<i class="fa fa-flask text-2xl text-secondary"></</i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">理念</h3>
+                        <p class="text-gray-400">打破AI"鹦鹉学舌"的局限，赋予机器真正的认知能力，让AI成为人类的共创伙伴</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心使命 -->
+        <section id="mission" class="py-20 bg-darker relative">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="relative">
+                        <div class="w-full h-[400px] rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/30 p-8 flex flex-col justify-center">
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                        <<i class="fa fa-check text-secondary"></</i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold mb-1">质疑现有知识</h4>
+                                        <p class="text-gray-400">让AI具备批判性思维，挑战传统认知边界</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                        <<i class="fa fa-lightbulb-o text-secondary"></</i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold mb-1">创造全新概念</h4>
+                                        <p class="text-gray-400">突破人类认知局限，生成前所未有的思想与概念</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                        <<i class="fa fa-book text-secondary"></</i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold mb-1">推导颠覆理论</h4>
+                                        <p class="text-gray-400">基于底层逻辑，构建能够改变世界的全新理论体系</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                        <<i class="fa fa-refresh text-secondary"></</i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold mb-1">重构世界认知</h4>
+                                        <p class="text-gray-400">从数据挖掘到概念重构，实现AI认知能力的质的飞跃</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 装饰元素 -->
+                        <div class="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-secondary/10 blur-3xl"></div>
+                        <div class="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-accent/10 blur-3xl"></div>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <div class="inline-block px-4 py-2 rounded-full bg-primary/20 text-secondary border border-primary/30">
+                            核心使命
+                        </div>
+                        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold leading-tight">
+                            让
