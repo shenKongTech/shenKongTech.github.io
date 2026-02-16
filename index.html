@@ -114,7 +114,7 @@
   <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-dark">
     <div class="text-[clamp(2.2rem,8vw,4rem)] font-bold text-year text-glow mb-8 float-slow">2026</div>
     <div class="text-[clamp(1.3rem,5vw,2.2rem)] text-love mb-5">
-      <span class="text-boy">图</span> & <span class="text-girl">桉</span> 新春之恋
+      <span class="text-boy">图</span> & <span class="text-girl">桉</span> 新春之恋·我们的专属空间
     </div>
     <div class="w-64 h-2 bg-gray-700/50 rounded-full overflow-hidden">
       <div id="progress" class="h-full bg-gradient-to-r from-boy to-girl w-0 transition-all duration-1000"></div>
@@ -162,11 +162,20 @@
         </div>
       </div>
 
+      <!-- 相爱日历 -->
+      <div class="max-w-xs mx-auto mb-8">
+        <h3 class="text-year text-lg font-bold mb-3">💞 相爱日历</h3>
+        <div class="bg-white/25 backdrop-blur-md rounded-xl p-4 card-glow text-center">
+          <div id="loveDays" class="text-2xl font-bold text-year">我们已相爱 0 天</div>
+          <div class="text-xs text-white/80 mt-1">2025.06.08我们相爱</div>
+        </div>
+      </div>
+
       <!-- 浪漫寄语卡片 -->
       <div class="relative z-20 max-w-md mx-auto bg-white/20 backdrop-blur-md rounded-2xl p-8 my-4 float-slow card-glow">
         <h2 class="text-center text-year text-2xl font-bold mb-4">💖 我们的新春寄语 💖</h2>
         <p class="text-center text-white/98 leading-relaxed text-lg">
-          新春启序，喜乐长安<br>
+         新春启序，喜乐长安<br>
           图与桉，相守岁岁年年<br>
           马年大吉，万事顺意<br>
           三餐四季，温柔相伴<br>
@@ -179,12 +188,12 @@
         <button id="gameStart" class="bg-love hover:bg-red-500 text-white px-10 py-5 rounded-full text-2xl font-bold shadow-2xl transition-all hover:scale-105 active:scale-95 card-glow">
           <i class="fa fa-gamepad mr-3"></i> 爱心大作战
         </button>
-        <p class="text-white/90 text-lg mt-3 font-medium">来收集我的新春爱意！ 💝</p>
+        <p class="text-white/90 text-lg mt-3 font-medium">来收集我的新春爱意 💝</p>
       </div>
 
       <!-- 下滑提示 -->
       <div class="absolute bottom-5 left-1/2 -translate-x-1/2 text-center text-white/80 scroll-indicator">
-        <p class="text-sm mb-1">下滑查看更多我们的专属浪漫</p>
+        <p class="text-sm mb-1">下滑查看更多甜蜜</p>
         <i class="fa fa-angle-down text-2xl"></i>
       </div>
     </div>
@@ -192,7 +201,7 @@
     <!-- 新春放烟花专区 -->
     <div class="relative z-20 max-w-lg mx-auto my-16 px-4 text-center">
       <h2 class="text-center text-[clamp(1.5rem,5vw,2.2rem)] font-bold text-year text-glow mb-8">
-        <i class="fa fa-fire text-year mr-2"></i> 新春放烟花专区
+        <i class="fa fa-fire text-year mr-2"></i> 我们来放烟花！
       </h2>
       <div class="bg-white/20 backdrop-blur-md rounded-2xl p-8 card-glow float-slow">
         <p class="text-lg text-white/95 mb-6">点击按钮，为爱的人绽放漫天烟花🎆</p>
@@ -213,7 +222,7 @@
           点击卡牌<br>抽取2026专属爱意
         </div>
       </div>
-      <p class="text-white/80 text-sm mt-4">每一张都是给你的的专属浪漫～</p>
+      <p class="text-white/80 text-sm mt-4">每一张都是图❤桉的专属浪漫</p>
     </div>
 
     <!-- 2026新春许愿墙（永久保存版） -->
@@ -234,7 +243,7 @@
             添加
           </button>
         </div>
-        <p class="text-white/70 text-xs mt-2">愿望会永久保存，一直都在哦～</p>
+        <p class="text-white/70 text-xs mt-2">愿望会永久都在哦～</p>
       </div>
     </div>
 
@@ -315,11 +324,20 @@
             startHeartRain()
             startFuRain()
             startCountdown()
+            calcLoveDays() // 加载相爱天数
             loadWishes() // 加载保存的愿望
           },500)
         },600)
       }
     },800)
+
+    // 计算相爱天数
+    function calcLoveDays() {
+      const startDate = new Date("2025-06-08").getTime();
+      const nowDate = new Date().getTime();
+      const dayDiff = Math.floor((nowDate - startDate) / (1000 * 60 * 60 * 24));
+      document.getElementById("loveDays").innerText = `我们已相爱 ${dayDiff} 天`;
+    }
 
     // 新春倒计时
     function startCountdown() {
@@ -429,7 +447,7 @@
   "伴图左右，岁岁无忧",
   "烟火人间，图桉相伴",
   "马年吉祥，爱意绵长",
-  "一屋两人，图桉四季",
+  "一屋两人，三餐四季",
   "桉是星光，照亮图途",
   "图是港湾，守护桉安",
   "新春喜乐，爱无期限",
@@ -572,10 +590,10 @@
 
     function showResult(){
       finalScore.textContent = score
-      if(score<60)resultMsg.textContent='加油呀，收集更多爱意~'
-      else if(score<120)resultMsg.textContent='超棒！爱意满满哒'
-      else if(score<180)resultMsg.textContent='我的宝宝太厉害啦！'
-      else resultMsg.textContent='完美！新春大吉，愿我们天长地久！'
+      if(score<60)resultMsg.textContent='宝宝加油，收集更多爱意~'
+      else if(score<120)resultMsg.textContent='宝宝超棒！爱意满满哒'
+      else if(score<180)resultMsg.textContent='宝宝太厉害啦！超级爱你～'
+      else resultMsg.textContent='完美！愿我们的爱情天长地久～'
       resultBox.classList.remove('hidden')
     }
 
