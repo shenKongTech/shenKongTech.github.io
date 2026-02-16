@@ -1,707 +1,494 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <!-- 核心移动端适配：强制让手机按1:1缩放，禁止用户缩放 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <!-- 禁止iOS自动识别电话号码/邮箱 -->
-    <meta name="format-detection" content="telephone=no, email=no">
-    <!-- iOS桌面图标（添加后手机可添加到桌面，更像APP） -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://picsum.photos/id/237/180/180">
-    <!-- 安卓桌面图标 -->
-    <link rel="icon" type="image/png" sizes="32x32" href="https://picsum.photos/id/237/32/32">
-    <title>Global AI Research Center | 全球AI研究中心</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind 配置：整合重复配置，优化移动端适配 -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#6D28D9', // 主色调：深紫蓝
-                        secondary: '#8B5CF6', // 辅助色：亮紫
-                        accent: '#EC4899', // 强调色：粉紫
-                        dark: '#0F172A', // 深色背景
-                        darker: '#030712', // 更深背景
-                        light: '#F8FAFC', // 浅色文字
-                    },
-                    fontFamily: {
-                        inter: ['Inter', 'sans-serif'],
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 3s ease-in-out infinite alternate',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        glow: {
-                            '0%': { boxShadow: '0 0 10px rgba(109, 40, 217, 0.5)' },
-                            '100%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.8), 0 0 30px rgba(236, 72, 153, 0.4)' },
-                        }
-                    }
-                },
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>2026图桉新春之恋</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            love: '#ff3366',
+            year: '#ffd700',
+            boy: '#ff8a80',
+            girl: '#ff69b4',
+            red: {
+              100: '#fff0f0',
+              300: '#ff6b6b',
+              500: '#e53935',
+              700: '#c62828',
+              900: '#8b0000',
+            },
+            dark: '#1a0505'
+          },
+          fontFamily: {
+            romance: ['Microsoft YaHei', 'Segoe UI', 'sans-serif']
+          },
         }
-    </script>
-    
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .text-gradient {
-                background-clip: text;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-            .bg-grid {
-                background-image: 
-                    linear-gradient(rgba(109, 40, 217, 0.1) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(109, 40, 217, 0.1) 1px, transparent 1px);
-                background-size: 15px 15px; /* 移动端优化网格密度 */
-            }
-            .scrollbar-hide::-webkit-scrollbar {
-                display: none;
-            }
-            .scrollbar-hide {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-            /* 移动端触摸反馈优化 */
-            .touch-feedback {
-                -webkit-tap-highlight-color: rgba(139, 92, 246, 0.2);
-            }
-        }
-        
-        /* 移动端响应式优化 */
-        @media (max-width: 768px) {
-            canvas {
-                max-width: 100% !important;
-                height: auto !important;
-            }
-            /* 移动端模型展示区高度适配 */
-            .mobile-model-height {
-                height: 400px !important;
-            }
-            /* 移动端按钮间距优化 */
-            .mobile-btn-gap {
-                gap: 2rem !important;
-            }
-            /* 移动端卡片内边距优化 */
-            .mobile-card-p {
-                padding: 1.5rem !important;
-            }
-        }
-    </style>
+      }
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-glow { text-shadow: 0 0 10px #ffd700, 0 0 20px #ff3366; }
+      .text-sparkle { animation: sparkle 2s infinite alternate; }
+      .float-slow { animation: float 3.5s ease-in-out infinite; }
+      .float-fast { animation: float 2.5s ease-in-out infinite; }
+      .float-updown { animation: upDown 2s ease-in-out infinite; }
+      .lantern-rock { animation: rock 3s ease-in-out infinite; }
+      .fu-spin { animation: spin 8s linear infinite; }
+      .heart-fall { animation: heartFall 4.5s linear infinite; }
+      .fu-fall { animation: fuFall 5s linear infinite; }
+      .firework-burst { animation: firework 1.6s ease-out forwards; }
+      .beat-love { animation: heartBeat 1.2s infinite alternate; }
+      .gradient-bg {
+        background: linear-gradient(45deg, #8b0000, #c62828, #e53935, #ff6b6b, #ff9a9e);
+        background-size: 300% 300%;
+        animation: gradientMove 9s ease infinite;
+      }
+      .card-glow { box-shadow: 0 0 20px rgba(255,215,0,0.3), 0 0 40px rgba(255,51,102,0.2); }
+      .scroll-indicator { animation: upDown 1.5s infinite alternate; }
+      .countdown-item { @apply bg-white/25 backdrop-blur-md rounded-xl p-3 min-w-[70px] text-center card-glow; }
+    }
+
+    @keyframes float {
+      0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}
+    }
+    @keyframes upDown {
+      0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}
+    }
+    @keyframes rock {
+      0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}
+    }
+    @keyframes spin {
+      0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}
+    }
+    @keyframes heartFall {
+      0%{transform:translateY(-100vh)rotate(0deg);opacity:0}
+      10%{opacity:1}100%{transform:translateY(100vh)rotate(360deg);opacity:0}
+    }
+    @keyframes fuFall {
+      0%{transform:translateY(-100vh)rotate(0deg);opacity:0}
+      10%{opacity:1}100%{transform:translateY(100vh)rotate(-360deg);opacity:0}
+    }
+    @keyframes firework {
+      0%{transform:scale(0);opacity:1}100%{transform:scale(1.6);opacity:0}
+    }
+    @keyframes heartBeat {
+      0%{transform:scale(1)}100%{transform:scale(1.15)}
+    }
+    @keyframes gradientMove {
+      0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}
+    }
+    @keyframes sparkle {
+      0%{opacity:0.8}100%{opacity:1}
+    }
+
+    *{-webkit-tap-highlight-color:transparent;box-sizing:border-box}
+    /* 修复滚动溢出：固定页面高度，禁止外部滚动，仅主页内部滚动 */
+    html,body{height:100vh;overflow:hidden;scroll-behavior:smooth}
+    body{overflow-x:hidden;font-family:romance}
+    #main{height:100vh;overflow-y:auto;overflow-x:hidden}
+    .click-effect{position:absolute;pointer-events:none;animation:clickPop 0.8s ease-out forwards}
+    @keyframes clickPop{0%{transform:scale(0);opacity:1}100%{transform:scale(1.5);opacity:0}}
+    .game-item{position:absolute;transition:all 0.3s;animation:bounce 0.7s infinite alternate}
+    @keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+  </style>
 </head>
-<body class="font-inter bg-dark text-light overflow-x-hidden scrollbar-hide">
-    <!-- 背景网格 -->
-    <div class="fixed inset-0 bg-grid opacity-30 z-0"></div>
+
+<body class="bg-dark text-white">
+  <!-- 加载页 -->
+  <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-dark">
+    <div class="text-[clamp(2.2rem,8vw,4rem)] font-bold text-year text-glow mb-8 float-slow">2026</div>
+    <div class="text-[clamp(1.3rem,5vw,2.2rem)] text-love mb-5">
+      <span class="text-boy">图</span> & <span class="text-girl">桉</span> 新春之恋
+    </div>
+    <div class="w-64 h-2 bg-gray-700/50 rounded-full overflow-hidden">
+      <div id="progress" class="h-full bg-gradient-to-r from-boy to-girl w-0 transition-all duration-1000"></div>
+    </div>
+  </div>
+
+  <!-- 主页（内部滚动，到底自动停止） -->
+  <div id="main" class="hidden relative p-5 gradient-bg">
+    <!-- 顶部灯笼 + 福字 -->
+    <div class="absolute top-2 left-6 text-4xl text-year lantern-rock z-10">🏮</div>
+    <div class="absolute top-2 right-6 text-4xl text-year lantern-rock z-10">🏮</div>
+    <div class="absolute top-16 left-10 text-5xl text-year fu-spin z-10 opacity-70">福</div>
+    <div class="absolute top-16 right-10 text-5xl text-year fu-spin z-10 opacity-70">福</div>
+
+    <!-- 首屏内容 -->
+    <div class="relative z-20 text-center pt-16 pb-6 min-h-[80vh] flex flex-col justify-center">
+      <h1 class="text-[clamp(2rem,7vw,3.2rem)] font-bold text-glow mb-3 text-sparkle">2026马年新春快乐</h1>
+      <div class="text-[clamp(1.8rem,6vw,2.8rem)] font-semibold mb-4">
+        <span class="text-boy">图</span>
+        <i class="fa fa-heart text-love beat-love mx-4"></i>
+        <span class="text-girl">桉</span>
+      </div>
+      <p class="text-white/95 text-xl font-medium mb-6">岁岁常欢愉 年年皆胜意</p>
+
+      <!-- ✅ 新增：2026新春倒计时 -->
+      <div class="max-w-xs mx-auto mb-8">
+        <h3 class="text-year text-lg font-bold mb-3">⏳ 新春倒计时</h3>
+        <div class="flex justify-center gap-3" id="countdown">
+          <div class="countdown-item">
+            <div id="day" class="text-2xl font-bold text-year">00</div>
+            <div class="text-xs text-white/80">天</div>
+          </div>
+          <div class="countdown-item">
+            <div id="hour" class="text-2xl font-bold text-year">00</div>
+            <div class="text-xs text-white/80">时</div>
+          </div>
+          <div class="countdown-item">
+            <div id="minute" class="text-2xl font-bold text-year">00</div>
+            <div class="text-xs text-white/80">分</div>
+          </div>
+          <div class="countdown-item">
+            <div id="second" class="text-2xl font-bold text-year">00</div>
+            <div class="text-xs text-white/80">秒</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 浪漫寄语卡片 -->
+      <div class="relative z-20 max-w-md mx-auto bg-white/20 backdrop-blur-md rounded-2xl p-8 my-4 float-slow card-glow">
+        <h2 class="text-center text-year text-2xl font-bold mb-4">💖 图桉新春寄语 💖</h2>
+        <p class="text-center text-white/98 leading-relaxed text-lg">
+          新春启序，喜乐长安<br>
+          图与桉，相守岁岁年年<br>
+          马年大吉，万事顺意<br>
+          三餐四季，温柔相伴<br>
+          爱意永存，幸福常伴
+        </p>
+      </div>
+
+      <!-- 游戏入口 -->
+      <div class="relative z-20 max-w-xs mx-auto mt-4 text-center">
+        <button id="gameStart" class="bg-love hover:bg-red-500 text-white px-10 py-5 rounded-full text-2xl font-bold shadow-2xl transition-all hover:scale-105 active:scale-95 card-glow">
+          <i class="fa fa-gamepad mr-3"></i> 情侣爱心大作战
+        </button>
+        <p class="text-white/90 text-lg mt-3 font-medium">和桉一起收集新春爱意 💝</p>
+      </div>
+
+      <!-- 下滑提示 -->
+      <div class="absolute bottom-5 left-1/2 -translate-x-1/2 text-center text-white/80 scroll-indicator">
+        <p class="text-sm mb-1">下滑查看更多甜蜜</p>
+        <i class="fa fa-angle-down text-2xl"></i>
+      </div>
+    </div>
+
+    <!-- 下滑内容：情侣甜蜜纪念册 -->
+    <div class="relative z-20 max-w-lg mx-auto my-16 px-4">
+      <h2 class="text-center text-[clamp(1.5rem,5vw,2.2rem)] font-bold text-year text-glow mb-8">
+        <i class="fa fa-book text-love mr-2"></i> 情侣甜蜜纪念册
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white/20 backdrop-blur-md rounded-2xl p-6 card-glow float-slow text-center">
+          <i class="fa fa-heart text-love text-4xl mb-4 beat-love"></i>
+          <h3 class="text-xl font-bold text-white mb-2">图的专属温柔</h3>
+          <p class="text-white/90">予桉岁岁年年，护桉朝朝暮暮</p>
+        </div>
+        <div class="bg-white/20 backdrop-blur-md rounded-2xl p-6 card-glow float-fast text-center">
+          <i class="fa fa-star text-year text-4xl mb-4 float-slow"></i>
+          <h3 class="text-xl font-bold text-white mb-2">桉的专属浪漫</h3>
+          <p class="text-white/90">伴图岁岁安安，爱图生生世世</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新春许愿墙 -->
+    <div class="relative z-20 max-w-lg mx-auto my-16 px-4">
+      <h2 class="text-center text-[clamp(1.5rem,5vw,2.2rem)] font-bold text-year text-glow mb-8">
+        <i class="fa fa-star text-year mr-2"></i> 2026新春许愿墙
+      </h2>
+      <div class="bg-white/20 backdrop-blur-md rounded-2xl p-8 card-glow">
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <i class="fa fa-check-circle text-year text-xl mt-1"></i>
+            <p class="text-lg text-white/95">愿图桉二人，平安喜乐，万事顺遂</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="fa fa-check-circle text-year text-xl mt-1"></i>
+            <p class="text-lg text-white/95">愿爱情长久，岁岁年年，永不分离</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="fa fa-check-circle text-year text-xl mt-1"></i>
+            <p class="text-lg text-white/95">愿2026马年，好运常伴，幸福加倍</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="fa fa-check-circle text-year text-xl mt-1"></i>
+            <p class="text-lg text-white/95">愿三餐四季，温柔有趣，爱意如初</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 专属爱意宣言 -->
+    <div class="relative z-20 max-w-lg mx-auto my-16 px-4">
+      <h2 class="text-center text-[clamp(1.5rem,5vw,2.2rem)] font-bold text-year text-glow mb-8">
+        <i class="fa fa-heart text-love mr-2"></i> 专属爱意宣言
+      </h2>
+      <div class="bg-white/20 backdrop-blur-md rounded-2xl p-8 card-glow float-slow text-center">
+        <p class="text-[clamp(1.2rem,4vw,1.6rem)] text-white/98 leading-loose">
+          世界再大，有桉足矣<br>
+          岁月再长，陪图到老<br>
+          <span class="text-year font-bold text-xl">2026新春，我们依旧相爱</span><br>
+          图 ❤️ 桉，天长地久
+        </p>
+        <div class="mt-6 flex justify-center gap-3">
+          <span class="text-love text-2xl beat-love">❤️</span>
+          <span class="text-year text-2xl float-slow">🧧</span>
+          <span class="text-love text-2xl beat-love">❤️</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部祝福 -->
+    <div class="relative z-20 text-center py-12 px-4">
+      <div class="max-w-md mx-auto">
+        <h2 class="text-[clamp(1.3rem,5vw,2rem)] font-bold text-white text-glow mb-4">
+          2026 图与桉 · 新春大吉
+        </h2>
+        <p class="text-white/90 text-lg">
+          烟火向星辰，所愿皆成真<br>
+          所爱隔山海，山海皆可平
+        </p>
+        <div class="mt-8 flex justify-center gap-6 text-3xl">
+          <i class="fa fa-heart text-love beat-love"></i>
+          <i class="fa fa-gift text-year float-slow"></i>
+          <i class="fa fa-star text-boy float-fast"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- 装饰元素 -->
+    <div class="absolute left-5 bottom-40 text-3xl text-year float-fast z-10">🧧</div>
+    <div class="absolute right-5 bottom-40 text-3xl text-year float-fast z-10">🧨</div>
+    <div class="absolute left-1/4 bottom-52 text-2xl text-love float-slow z-10">🌸</div>
+    <div class="absolute right-1/4 bottom-52 text-2xl text-love float-slow z-10">🌸</div>
+  </div>
+
+  <!-- 游戏页面 -->
+  <div id="game" class="hidden relative min-h-screen p-4 bg-dark">
+    <div class="relative z-10 flex justify-between items-center p-4 bg-white/15 backdrop-blur-md rounded-xl mb-4">
+      <div class="text-white"><span class="text-year font-bold">分数</span> <span id="score" class="text-2xl font-bold">0</span></div>
+      <div class="text-white"><span class="text-year font-bold">时间</span> <span id="time" class="text-2xl font-bold">40</span>s</div>
+      <button id="backHome" class="w-10 h-10 flex items-center justify-center bg-white/10 rounded-full hover:bg-white/20">
+        <i class="fa fa-home text-xl"></i>
+      </button>
+    </div>
+
+    <div id="gameBox" class="relative h-[75vh] bg-white/8 backdrop-blur-sm rounded-2xl overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/40 text-center pointer-events-none">
+        <i class="fa fa-heart text-love text-4xl mb-3"></i>
+        <p class="text-lg">点击掉落的爱心/福袋/星星</p>
+        <p class="text-sm mt-2">图❤桉 一起收集幸福</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 游戏结果弹窗 -->
+  <div id="result" class="hidden fixed inset-0 z-40 flex items-center justify-center bg-dark/95 backdrop-blur-md p-5">
+    <div class="bg-white/15 backdrop-blur-lg rounded-3xl p-8 max-w-sm w-full text-center">
+      <h2 class="text-2xl text-year font-bold mb-4">游戏结束啦🎉</h2>
+      <div class="text-6xl font-bold text-love mb-6 beat-love" id="finalScore">0</div>
+      <p class="text-white/95 text-lg mb-8" id="resultMsg"></p>
+      <div class="flex justify-center gap-4">
+        <button id="againGame" class="bg-love hover:bg-love/90 text-white px-6 py-3 rounded-full transition-all">再来一次</button>
+        <button id="goHome" class="bg-boy hover:bg-boy/90 text-white px-6 py-3 rounded-full transition-all">返回主页</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 加载动画
+    const loader = document.getElementById('loader')
+    const main = document.getElementById('main')
+    const progress = document.getElementById('progress')
+    let bar = 0
     
-    <!-- 导航栏 -->
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-2">
-                <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-accent flex items-center justify-center animate-glow">
-                    <<i class="fa fa-brain text-xl"></</i>
-                </div>
-                <span class="text-xl font-bold bg-gradient-to-r from-secondary to-accent text-gradient">GAIRC</span>
-            </a>
-            
-            <!-- 桌面导航 -->
-            <nav class="hidden md:flex items-center gap-8">
-                <a href="#about" class="text-gray-300 hover:text-secondary transition-colors">关于我们</a>
-                <a href="#mission" class="text-gray-300 hover:text-secondary transition-colors">核心使命</a>
-                <a href="#model" class="text-gray-300 hover:text-secondary transition-colors">图包AI</a>
-                <a href="#research" class="text-gray-300 hover:text-secondary transition-colors">研究方向</a>
-                <a href="#contact" class="px-6 py-2 rounded-full bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-accent/20 transition-all">联系我们</a>
-            </nav>
-            
-            <!-- 移动端菜单按钮（添加触摸反馈） -->
-            <button class="md:hidden text-2xl touch-feedback" id="menuBtn">
-                <<i class="fa fa-bars"></</i>
-            </button>
-        </div>
+    const loadTimer = setInterval(() => {
+      bar += 10
+      progress.style.width = bar + '%'
+      if(bar >= 100) {
+        clearInterval(loadTimer)
+        setTimeout(() => {
+          loader.classList.add('opacity-0','pointer-events-none')
+          setTimeout(() => {
+            loader.classList.add('hidden')
+            main.classList.remove('hidden')
+            startHeartRain()
+            startFuRain()
+            startFireworks()
+            startCountdown() // 启动倒计时
+          },500)
+        },600)
+      }
+    },800)
+
+    // ✅ 2026新春倒计时（2026年2月17日正月初一）
+    function startCountdown() {
+      const target = new Date("2026-02-17 00:00:00").getTime();
+      const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const diff = target - now;
         
-        <!-- 移动端导航菜单 -->
-        <div class="md:hidden fixed inset-0 bg-darker/95 z-50 flex flex-col items-center justify-center gap-8 text-xl transform translate-x-full transition-transform duration-300 mobile-btn-gap" id="mobileMenu">
-            <button class="absolute top-6 right-6 text-2xl touch-feedback" id="closeBtn">
-                <<i class="fa fa-times"></</i>
-            </button>
-            <a href="#about" class="text-gray-300 hover:text-secondary transition-colors">关于我们</a>
-            <a href="#mission" class="text-gray-300 hover:text-secondary transition-colors">核心使命</a>
-            <a href="#model" class="text-gray-300 hover:text-secondary transition-colors">图包AI</a>
-            <a href="#research" class="text-gray-300 hover:text-secondary transition-colors">研究方向</a>
-            <a href="#contact" class="px-8 py-3 rounded-full bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-accent/20 transition-all">联系我们</a>
-        </div>
-    </header>
-    <main>
-        <!-- 英雄区 -->
-        <section class="min-h-screen flex items-center pt-20 pb-16 relative overflow-hidden">
-            <div class="container mx-auto px-6 z-10">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-8">
-                        <div class="inline-block px-4 py-2 rounded-full bg-primary/20 text-secondary border border-primary/30">
-                            重新定义AI的未来
-                        </div>
-                        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-extrabold leading-tight">
-                            从<span class="bg-gradient-to-r from-secondary to-accent text-gradient">数据挖掘</span>到
-                            <span class="bg-gradient-to-r from-accent to-secondary text-gradient">概念重构</span>
-                        </h1>
-                        <p class="text-gray-300 text-lg md:text-xl max-w-lg">
-                            全球AI研究中心致力于让AI从"学习现有知识"转向"质疑现有知识、创造全新概念、推导颠覆理论"，实现认知革命。
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="https://wwp.lanzoup.com/i95T33ci53xa" class="px-8 py-3 rounded-full bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-accent/20 transition-all text-lg font-medium">
-                                探索图包AI
-                            </a>
-                            <a href="#research" class="px-8 py-3 rounded-full bg-transparent border border-secondary/50 hover:border-secondary hover:text-secondary transition-all text-lg font-medium">
-                                研究方向
-                            </a>
-                        </div>
-                        <div class="flex items-center gap-6 pt-4">
-                            <div class="flex -space-x-2">
-                                <img src="https://picsum.photos/id/1/40/40" alt="专家" class="w-10 h-10 rounded-full border-2 border-dark">
-                                <img src="https://picsum.photos/id/2/40/40" alt="专家" class="w-10 h-10 rounded-full border-2 border-dark">
-                                <img src="https://picsum.photos/id/3/40/40" alt="专家" class="w-10 h-10 rounded-full border-2 border-dark">
-                                <div class="w-10 h-10 rounded-full border-2 border-dark bg-secondary/20 flex items-center justify-center text-xs">
-                                    +50
-                                </div>
-                            </div>
-                            <p class="text-gray-400 text-sm">全球顶尖AI科学家团队</p>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <!-- 英雄区模型展示（添加移动端高度适配） -->
-                        <div class="w-full mobile-model-height rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 backdrop-blur-sm border border-primary/30 animate-glow flex items-center justify-center">
-                            <div class="text-center space-y-4 animate-float">
-                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-primary to-accent flex items-center justify-center">
-                                    <<i class="fa fa-brain text-4xl"></</i>
-                                </div>
-                                <h3 class="text-2xl font-bold">图包AI</h3>
-                                <p class="text-gray-300">1.7万亿参数量 · 颠覆性大模型</p>
-                            </div>
-                        </div>
-                        <!-- 装饰元素 -->
-                        <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-secondary/10 blur-3xl"></div>
-                        <div class="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-accent/10 blur-3xl"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- 底部渐变 -->
-            <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-dark to-transparent"></div>
-        </section>
-        <!-- 关于我们 -->
-        <section id="about" class="py-20 relative">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">关于全球AI研究中心</h2>
-                    <p class="text-gray-300 text-lg">我们是一支由顶尖AI科学家、数学家、哲学家组成的跨学科团队，致力于推动AI认知能力的革命性突破</p>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-darker/50 rounded-xl p-8 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 mobile-card-p">
-                        <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center mb-6">
-                            <<i class="fa fa-rocket text-2xl text-secondary"></</i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">愿景</h3>
-                        <p class="text-gray-400">构建能够自主思考、创造、质疑的通用人工智能，推动人类文明进步</p>
-                    </div>
-                    
-                    <div class="bg-darker/50 rounded-xl p-8 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 mobile-card-p">
-                        <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center mb-6">
-                            <<i class="fa fa-users text-2xl text-secondary"></</i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">团队</h3>
-                        <p class="text-gray-400">汇聚全球50+顶尖AI专家，包括Jietu Chen等行业领军人物，平均拥有15年以上科研经验</p>
-                    </div>
-                    
-                    <div class="bg-darker/50 rounded-xl p-8 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 mobile-card-p">
-                        <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center mb-6">
-                            <<i class="fa fa-flask text-2xl text-secondary"></</i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">理念</h3>
-                        <p class="text-gray-400">打破AI"鹦鹉学舌"的局限，赋予机器真正的认知能力，让AI成为人类的共创伙伴</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- 核心使命 -->
-        <section id="mission" class="py-20 bg-darker relative">
-            <div class="container mx-auto px-6">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="relative">
-                        <div class="w-full h-[400px] rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/30 p-8 flex flex-col justify-center">
-                            <div class="space-y-6">
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
-                                        <<i class="fa fa-check text-secondary"></</i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-xl font-bold mb-1">质疑现有知识</h4>
-                                        <p class="text-gray-400">让AI具备批判性思维，挑战传统认知边界</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
-                                        <<i class="fa fa-lightbulb-o text-secondary"></</i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-xl font-bold mb-1">创造全新概念</h4>
-                                        <p class="text-gray-400">突破人类认知局限，生成前所未有的思想与概念</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
-                                        <<i class="fa fa-book text-secondary"></</i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-xl font-bold mb-1">推导颠覆理论</h4>
-                                        <p class="text-gray-400">基于底层逻辑，构建能够改变世界的全新理论体系</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
-                                        <<i class="fa fa-refresh text-secondary"></</i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-xl font-bold mb-1">重构世界认知</h4>
-                                        <p class="text-gray-400">从数据挖掘到概念重构，实现AI认知能力的质的飞跃</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 装饰元素 -->
-                        <div class="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-secondary/10 blur-3xl"></div>
-                        <div class="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-accent/10 blur-3xl"></div>
-                    </div>
-                    
-                    <div class="space-y-8">
-                        <div class="inline-block px-4 py-2 rounded-full bg-primary/20 text-secondary border border-primary/30">
-                            核心使命
-                        </div>
-                        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold leading-tight">
-                            让AI从「学习」走向「创造」
-                        </h2>
-                        <p class="text-gray-300 text-lg">
-                            传统AI局限于学习和复现现有知识，而我们的使命是赋予AI真正的认知能力——质疑既定规则、创造全新概念、推导颠覆理论，最终实现从「数据中挖掘能量」到「用概念重构世界」的跨越。
-                        </p>
-                        <div class="bg-dark/60 rounded-xl p-6 border border-primary/30">
-                            <blockquote class="text-gray-200 text-lg italic relative pl-6">
-                                <span class="absolute left-0 top-0 text-4xl text-primary/50">"</span>
-                                真正的人工智能不应只是人类知识的容器，而应成为人类智慧的延伸与共创者。我们致力于打破AI的认知边界，让机器具备改变世界的思想力量。
-                                <footer class="mt-4 text-gray-400 text-sm">—— Jietu Chen，图包AI研发者</footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- 图包AI模型 -->
-        <section id="model" class="py-20 relative">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <div class="inline-block px-4 py-2 rounded-full bg-primary/20 text-secondary border border-primary/30 mb-4">
-                        标志性AI大模型
-                    </div>
-                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">图包AI · 重新定义认知智能</h2>
-                    <p class="text-gray-300 text-lg">由Jietu Chen研发，融合超高参数效率与极速响应能力，实现颠覆性交互体验</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
-                    <div class="relative">
-                        <!-- 模型展示区（添加移动端高度适配） -->
-                        <div class="w-full mobile-model-height rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 backdrop-blur-sm border border-primary/30 animate-glow flex flex-col items-center justify-center p-8">
-                            <div class="text-center space-y-8 animate-float">
-                                <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-primary to-accent flex items-center justify-center shadow-lg shadow-accent/30">
-                                    <<i class="fa fa-brain text-5xl"></</i>
-                                </div>
-                                <h3 class="text-3xl font-bold bg-gradient-to-r from-secondary to-accent text-gradient">图包AI</h3>
-                                <p class="text-gray-300 text-lg">全球首个具备「概念创造」能力的大模型</p>
-                                
-                                <!-- 核心参数指标 -->
-                                <div class="grid grid-cols-2 gap-6 w-full max-w-md mx-auto">
-                                    <div class="bg-dark/60 rounded-lg p-4 border border-primary/30">
-                                        <p class="text-gray-400 text-sm mb-1">参数量</p>
-                                        <p class="text-2xl font-bold text-secondary">1.7万亿</p>
-                                    </div>
-                                    <div class="bg-dark/60 rounded-lg p-4 border border-primary/30">
-                                        <p class="text-gray-400 text-sm mb-1">极速输出</p>
-                                        <p class="text-2xl font-bold text-secondary">344 token/s</p>
-                                    </div>
-                                    <div class="bg-dark/60 rounded-lg p-4 border border-primary/30">
-                                        <p class="text-gray-400 text-sm mb-1">上下文长度</p>
-                                        <p class="text-2xl font-bold text-secondary">2M</p>
-                                    </div>
-                                    <div class="bg-dark/60 rounded-lg p-4 border border-primary/30">
-                                        <p class="text-gray-400 text-sm mb-1">端到端延迟</p>
-                                        <p class="text-2xl font-bold text-secondary">3.8秒</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 装饰元素 -->
-                        <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-secondary/10 blur-3xl"></div>
-                        <div class="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-accent/10 blur-3xl"></div>
-                    </div>
-                    
-                    <div class="space-y-8">
-                        <h3 class="text-2xl font-bold mb-4">核心技术优势</h3>
-                        
-                        <!-- 技术优势列表 -->
-                        <div class="space-y-6">
-                            <div class="bg-darker/50 rounded-xl p-6 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 mobile-card-p">
-                                <div class="flex items-center gap-4 mb-3">
-                                    <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                                        <<i class="fa fa-microchip text-secondary"></</i>
-                                    </div>
-                                    <h4 class="text-xl font-bold">超高参数效率</h4>
-                                </div>
-                                <p class="text-gray-400">突破传统大模型参数效率瓶颈，以更优架构实现更高认知能力，单模型稳定输出达75 token/s</p>
-                            </div>
-                            
-                            <div class="bg-darker/50 rounded-xl p-6 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 mobile-card-p">
-                                <div class="flex items-center gap-4 mb-3">
-                                    <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                                        <<i class="fa fa-expand text-secondary"></</i>
-                                    </div>
-                                    <h4 class="text-xl font-bold">2M超长上下文</h4>
-                                </div>
-                                <p class="text-gray-400">支持200万token超长上下文窗口，能够处理整本书籍、大型数据集等复杂信息，实现深度理解与推理</p>
-                            </div>
-                            
-                            <div class="bg-darker/50 rounded-xl p-6 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 mobile-card-p">
-                                <div class="flex items-center gap-4 mb-3">
-                                    <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                                        <<i class="fa fa-bolt text-secondary"></</i>
-                                    </div>
-                                    <h4 class="text-xl font-bold">极速响应体验</h4>
-                                </div>
-                                <p class="text-gray-400">344 token/s极速输出与3.8秒端到端延迟，打造流畅自然的交互体验，媲美人类实时对话</p>
-                            </div>
-                            
-                            <div class="bg-darker/50 rounded-xl p-6 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 mobile-card-p">
-                                <div class="flex items-center gap-4 mb-3">
-                                    <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                                        <<i class="fa fa-lightbulb-o text-secondary"></</i>
-                                    </div>
-                                    <h4 class="text-xl font-bold">概念创造能力</h4>
-                                </div>
-                                <p class="text-gray-400">全球首个具备自主创造全新概念、推导颠覆理论能力的大模型，打破AI"鹦鹉学舌"的认知局限</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 性能对比图表 -->
-                <div class="bg-darker/50 rounded-xl p-8 border border-primary/20">
-                    <h3 class="text-2xl font-bold mb-6 text-center">模型性能对比</h3>
-                    <div class="w-full h-[400px]">
-                        <canvas id="performanceChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- 研究方向 -->
-        <section id="research" class="py-20 bg-darker relative">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <div class="inline-block px-4 py-2 rounded-full bg-primary/20 text-secondary border border-primary/30 mb-4">
-                        前沿探索
-                    </div>
-                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">核心研究方向</h2>
-                    <p class="text-gray-300 text-lg">聚焦AI认知能力的根本性突破，探索人工智能的未来边界</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-dark/60 rounded-xl p-8 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 group mobile-card-p">
-                        <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-all">
-                            <<i class="fa fa-question-circle text-2xl text-secondary group-hover:text-accent transition-colors"></</i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">AI批判性思维</h3>
-                        <p class="text-gray-400">研究让AI具备质疑现有知识、识别逻辑漏洞、挑战传统认知的能力，构建真正的批判性思维框架</p>
-                    </div>
-                    
-                    <div class="bg-dark/60 rounded-xl p-8 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 group mobile-card-p">
-                        <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-all">
-                            <<i class="fa fa-cubes text-2xl text-secondary group-hover:text-accent transition-colors"></</i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">新概念生成</h3>
-                        <p class="text-gray-400">探索AI自主创造全新概念、定义新领域、构建新框架的技术路径，突破人类认知局限</p>
-                    </div>
-                    
-                    <div class="bg-dark/60 rounded-xl p-8 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 group mobile-card-p">
-                        <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-all">
-                            <<i class="fa fa-sitemap text-2xl text-secondary group-hover:text-accent transition-colors"></</i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">理论推导引擎</h3>
-                        <p class="text-gray-400">研发能够基于底层逻辑自主推导全新理论、证明科学猜想、构建完整知识体系的AI引擎</p>
-                    </div>
-                    
-                    <div class="bg-dark/60 rounded-xl p-8 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 group mobile-card-p">
-                        <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-all">
-                            <<i class="fa fa-exchange text-2xl text-secondary group-hover:text-accent transition-colors"></</i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">跨模态认知</h3>
-                        <p class="text-gray-400">实现文本、图像、音频、视频等多模态信息的深度融合与认知，构建更全面的世界理解模型</p>
-                    </div>
-                    
-                    <div class="bg-dark/60 rounded-xl p-8 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 group mobile-card-p">
-                        <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-all">
-                            <<i class="fa fa-balance-scale text-2xl text-secondary group-hover:text-accent transition-colors"></</i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">AI伦理与安全</h3>
-                        <p class="text-gray-400">研究高级AI系统的伦理框架、安全机制与可控性技术，确保AI发展与人类利益保持一致</p>
-                    </div>
-                    
-                    <div class="bg-dark/60 rounded-xl p-8 border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 group mobile-card-p">
-                        <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-all">
-                            <<i class="fa fa-users text-2xl text-secondary group-hover:text-accent transition-colors"></</i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">人机共创系统</h3>
-                        <p class="text-gray-400">构建人类与AI深度协作、优势互补的共创平台，让AI成为人类创新的强大助力</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- 联系我们 -->
-        <section id="contact" class="py-20 relative">
-            <div class="container mx-auto px-6">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-8">
-                        <div class="inline-block px-4 py-2 rounded-full bg-primary/20 text-secondary border border-primary/30 mb-4">
-                            携手共创未来
-                        </div>
-                        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold leading-tight">
-                            加入我们，<br>一起推动AI认知革命
-                        </h2>
-                        <p class="text-gray-300 text-lg">
-                            无论你是顶尖科学家、优秀工程师，还是对AI充满热情的学生，我们都欢迎你加入全球AI研究中心，共同探索人工智能的未来边界。
-                        </p>
-                        
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
-                                    <<i class="fa fa-envelope text-secondary"></</i>
-                                </div>
-                                <div>
-                                    <p class="text-gray-400 text-sm">邮箱</p>
-                                    <p class="text-lg">contact@gairc.org</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
-                                    <<i class="fa fa-map-marker text-secondary"></</i>
-                                </div>
-                                <div>
-                                    <p class="text-gray-400 text-sm">地址</p>
-                                    <p class="text-lg">全球AI研究中心，硅谷创新园区</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
-                                    <<i class="fa fa-phone text-secondary"></</i>
-                                </div>
-                                <div>
-                                    <p class="text-gray-400 text-sm">电话</p>
-                                    <p class="text-lg">+1 (800) AI-REVOLUTION</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-4">
-                            <a href="#" class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/40 transition-all touch-feedback">
-                                <<i class="fa fa-twitter text-secondary"></</i>
-                            </a>
-                            <a href="#" class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/40 transition-all touch-feedback">
-                                <<i class="fa fa-linkedin text-secondary"></</i>
-                            </a>
-                            <a href="#" class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/40 transition-all touch-feedback">
-                                <<i class="fa fa-github text-secondary"></</i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- 补充联系表单（增强手机端交互） -->
-                    <div class="bg-darker/50 rounded-xl p-8 border border-primary/20 mobile-card-p">
-                        <h3 class="text-2xl font-bold mb-6">发送咨询</h3>
-                        <form class="space-y-6">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-gray-300 mb-2 text-sm">姓名</label>
-                                    <input type="text" id="name" class="w-full px-4 py-3 rounded-lg bg-dark/60 border border-primary/30 focus:border-secondary focus:outline-none text-light">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-gray-300 mb-2 text-sm">邮箱</label>
-                                    <input type="email" id="email" class="w-full px-4 py-3 rounded-lg bg-dark/60 border border-primary/30 focus:border-secondary focus:outline-none text-light">
-                                </div>
-                            </div>
-                            <div>
-                                <label for="subject" class="block text-gray-300 mb-2 text-sm">主题</label>
-                                <input type="text" id="subject" class="w-full px-4 py-3 rounded-lg bg-dark/60 border border-primary/30 focus:border-secondary focus:outline-none text-light">
-                            </div>
-                            <div>
-                                <label for="message" class="block text-gray-300 mb-2 text-sm">留言</label>
-                                <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg bg-dark/60 border border-primary/30 focus:border-secondary focus:outline-none text-light"></textarea>
-                            </div>
-                            <button type="submit" class="w-full py-3 rounded-lg bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-accent/20 transition-all text-lg font-medium touch-feedback">
-                                提交咨询
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <!-- 页脚 -->
-    <footer class="bg-darker py-12 relative">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-accent flex items-center justify-center">
-                        <<i class="fa fa-brain text-xl"></</i>
-                    </div>
-                    <span class="text-xl font-bold bg-gradient-to-r from-secondary to-accent text-gradient">GAIRC</span>
-                </div>
-                <p class="text-gray-400 text-sm">© 2025 全球AI研究中心. 保留所有权利.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="text-gray-400 hover:text-secondary transition-colors touch-feedback">
-                        <<i class="fa fa-twitter"></</i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-secondary transition-colors touch-feedback">
-                        <<i class="fa fa-linkedin"></</i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-secondary transition-colors touch-feedback">
-                        <<i class="fa fa-github"></</i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-secondary transition-colors touch-feedback">
-                        <<i class="fa fa-youtube-play"></</i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+        const day = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hour = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minute = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const second = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        document.getElementById("day").innerText = day.toString().padStart(2, '0');
+        document.getElementById("hour").innerText = hour.toString().padStart(2, '0');
+        document.getElementById("minute").innerText = minute.toString().padStart(2, '0');
+        document.getElementById("second").innerText = second.toString().padStart(2, '0');
+        
+        if(diff < 0) {
+          clearInterval(timer);
+          document.getElementById("countdown").innerHTML = `<div class="text-year text-2xl font-bold">🎉 新春快乐 🎉</div>`;
+        }
+      }, 1000);
+    }
 
-    <!-- 核心脚本（导航交互+图表初始化） -->
-    <script>
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-darker/90', 'backdrop-blur-md', 'shadow-lg');
-            } else {
-                navbar.classList.remove('bg-darker/90', 'backdrop-blur-md', 'shadow-lg');
-            }
-        });
+    // 爱心飘落
+    function startHeartRain() {
+      setInterval(() => {
+        if(main.classList.contains('hidden')) return
+        const heart = document.createElement('i')
+        const size = Math.random()*15+12
+        const left = Math.random()*100
+        const color = Math.random()>0.5?'#ff3366':'#ffd700'
+        heart.className = 'fa fa-heart heart-fall absolute'
+        heart.style.cssText = `left:${left}%;font-size:${size}px;color:${color};opacity:${Math.random()*0.6+0.4};z-index:1`
+        document.body.appendChild(heart)
+        setTimeout(()=>heart.remove(),5000)
+      },280)
+    }
 
-        // 移动端菜单交互
-        const menuBtn = document.getElementById('menuBtn');
-        const closeBtn = document.getElementById('closeBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuLinks = mobileMenu.querySelectorAll('a');
+    // 福字飘落
+    function startFuRain() {
+      setInterval(() => {
+        if(main.classList.contains('hidden')) return
+        const fu = document.createElement('div')
+        const size = Math.random()*18+15
+        const left = Math.random()*100
+        fu.className = 'fu-fall absolute text-year'
+        fu.textContent = '福'
+        fu.style.cssText = `left:${left}%;font-size:${size}px;opacity:${Math.random()*0.5+0.3};z-index:1;font-weight:bold`
+        document.body.appendChild(fu)
+        setTimeout(()=>fu.remove(),5500)
+      },800)
+    }
 
-        menuBtn.addEventListener('click', function() {
-            mobileMenu.classList.remove('translate-x-full');
-        });
+    // 烟花特效
+    function startFireworks() {
+      setInterval(() => {
+        if(main.classList.contains('hidden')) return
+        const fw = document.createElement('div')
+        const size = Math.random()*70+40
+        const left = Math.random()*100
+        const top = Math.random()*35
+        const colors = ['#ff3366','#ffd700','#ff6b6b','#ff69b4']
+        fw.className = 'firework-burst absolute rounded-full'
+        fw.style.cssText = `left:${left}%;top:${top}%;width:${size}px;height:${size}px;background:radial-gradient(circle,${colors[Math.floor(Math.random()*4)]} 0%,transparent 70%);z-index:0`
+        document.body.appendChild(fw)
+        setTimeout(()=>fw.remove(),1600)
+      },1800)
+    }
 
-        closeBtn.addEventListener('click', function() {
-            mobileMenu.classList.add('translate-x-full');
-        });
+    // 游戏逻辑
+    const gameStart = document.getElementById('gameStart')
+    const game = document.getElementById('game')
+    const backHome = document.getElementById('backHome')
+    const resultBox = document.getElementById('result')
+    const scoreText = document.getElementById('score')
+    const timeText = document.getElementById('time')
+    const finalScore = document.getElementById('finalScore')
+    const resultMsg = document.getElementById('resultMsg')
+    const againGame = document.getElementById('againGame')
+    const goHome = document.getElementById('goHome')
 
-        menuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.classList.add('translate-x-full');
-            });
-        });
+    let score = 0, time = 40, gameTimer, itemTimer, speed = 850
 
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+    gameStart.addEventListener('click',()=>{
+      main.classList.add('hidden')
+      game.classList.remove('hidden')
+      initGame()
+    })
 
-        // 性能对比图表初始化
-        window.addEventListener('load', function() {
-            const ctx = document.getElementById('performanceChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['参数量（万亿）', '输出速度（token/s）', '上下文（万）', '延迟（秒）'],
-                    datasets: [
-                        {
-                            label: '图包AI',
-                            data: [1.7, 344, 200, 3.8],
-                            backgroundColor: 'rgba(139, 92, 246, 0.7)',
-                            borderColor: 'rgba(139, 92, 246, 1)',
-                            borderWidth: 1,
-                            borderRadius: 6
-                        },
-                        {
-                            label: '传统大模型',
-                            data: [0.7, 120, 10, 8.5],
-                            backgroundColor: 'rgba(236, 72, 153, 0.4)',
-                            borderColor: 'rgba(236, 72, 153, 0.6)',
-                            borderWidth: 1,
-                            borderRadius: 6
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            },
-                            ticks: {
-                                color: 'rgba(255, 255, 255, 0.7)'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            },
-                            ticks: {
-                                color: 'rgba(255, 255, 255, 0.7)'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: 'rgba(255, 255, 255, 0.7)'
-                            }
-                        }
-                    }
-                }
-            });
-        });
-    </script>
+    backHome.addEventListener('click',()=>{
+      clearInterval(gameTimer);clearInterval(itemTimer)
+      game.classList.add('hidden');main.classList.remove('hidden')
+    })
+
+    function initGame(){
+      score=0;time=40;speed=850
+      scoreText.textContent=0;timeText.textContent=40
+      
+      gameTimer = setInterval(()=>{
+        time--;timeText.textContent=time
+        if(time%6===0&&speed>400)speed-=100
+        if(time<=0){clearInterval(gameTimer);clearInterval(itemTimer);showResult()}
+      },1000)
+      
+      createItems()
+    }
+
+    function createItems(){
+      itemTimer = setInterval(()=>{
+        const item = document.createElement('div')
+        const size = Math.random()*22+22
+        const left = Math.random()*82+9
+        const top = Math.random()*72+8
+        const props = [
+          {icon:'fa-heart',color:'text-love',point:10},
+          {icon:'fa-gift',color:'text-year',point:15},
+          {icon:'fa-star',color:'text-boy',point:8},
+          {icon:'fa-sun-o',color:'text-year',point:12}
+        ]
+        const p = props[Math.floor(Math.random()*4)]
+        item.className = 'game-item cursor-pointer'
+        item.innerHTML = `<i class="fa ${p.icon} ${p.color} text-2xl"></i>`
+        item.style.cssText = `left:${left}%;top:${top}%;font-size:${size}px`
+        
+        item.addEventListener('click',()=>{
+          score+=p.point;scoreText.textContent=score
+          const pop = document.createElement('i')
+          pop.className = 'fa fa-heart click-effect text-love'
+          pop.style.cssText = `left:${left}%;top:${top}%;font-size:${size+10}px`
+          gameBox.appendChild(pop)
+          setTimeout(()=>pop.remove(),800)
+          item.remove()
+        })
+        
+        gameBox.appendChild(item)
+        setTimeout(()=>item.remove(),speed)
+      },speed)
+    }
+
+    function showResult(){
+      finalScore.textContent = score
+      if(score<60)resultMsg.textContent='和桉桉一起加油，收集更多爱意~'
+      else if(score<120)resultMsg.textContent='超棒！我们的爱意满满哒'
+      else if(score<180)resultMsg.textContent='宝宝太厉害啦！'
+      else resultMsg.textContent='完美！祝愿我们天长地久，新春大吉'
+      resultBox.classList.remove('hidden')
+    }
+
+    againGame.addEventListener('click',()=>{
+      resultBox.classList.add('hidden')
+      initGame()
+    })
+
+    goHome.addEventListener('click',()=>{
+      resultBox.classList.add('hidden')
+      game.classList.add('hidden')
+      main.classList.remove('hidden')
+    })
+  </script>
 </body>
 </html>
