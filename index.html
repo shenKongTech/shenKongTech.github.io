@@ -44,7 +44,7 @@
       .fu-spin { animation: spin 8s linear infinite; }
       .heart-fall { animation: heartFall 4.5s linear infinite; }
       .fu-fall { animation: fuFall 5s linear infinite; }
-      .firework-burst { animation: firework 1.6s ease-out forwards; }
+      .firework-burst { animation: firework 2s ease-out forwards; z-index: 999 !important; }
       .beat-love { animation: heartBeat 1.2s infinite alternate; }
       .gradient-bg {
         background: linear-gradient(45deg, #8b0000, #c62828, #e53935, #ff6b6b, #ff9a9e);
@@ -54,6 +54,9 @@
       .card-glow { box-shadow: 0 0 20px rgba(255,215,0,0.3), 0 0 40px rgba(255,51,102,0.2); }
       .scroll-indicator { animation: upDown 1.5s infinite alternate; }
       .countdown-item { @apply bg-white/25 backdrop-blur-md rounded-xl p-3 min-w-[70px] text-center card-glow; }
+      .card-flip { animation: flipCard 0.8s ease-in-out forwards; }
+      .fire-btn { @apply bg-year hover:bg-year/90 text-red-900 font-bold px-6 py-3 rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 card-glow; }
+      .love-card { @apply bg-white/25 backdrop-blur-md rounded-2xl p-6 card-glow h-[180px] flex items-center justify-center cursor-pointer; }
     }
 
     @keyframes float {
@@ -77,7 +80,8 @@
       10%{opacity:1}100%{transform:translateY(100vh)rotate(-360deg);opacity:0}
     }
     @keyframes firework {
-      0%{transform:scale(0);opacity:1}100%{transform:scale(1.6);opacity:0}
+      0%{transform:scale(0);opacity:1}
+      100%{transform:scale(2.8);opacity:0}
     }
     @keyframes heartBeat {
       0%{transform:scale(1)}100%{transform:scale(1.15)}
@@ -88,9 +92,13 @@
     @keyframes sparkle {
       0%{opacity:0.8}100%{opacity:1}
     }
+    @keyframes flipCard {
+      0%{transform:rotateY(0deg)}
+      50%{transform:rotateY(90deg)}
+      100%{transform:rotateY(0deg)}
+    }
 
     *{-webkit-tap-highlight-color:transparent;box-sizing:border-box}
-    /* 修复滚动溢出：固定页面高度，禁止外部滚动，仅主页内部滚动 */
     html,body{height:100vh;overflow:hidden;scroll-behavior:smooth}
     body{overflow-x:hidden;font-family:romance}
     #main{height:100vh;overflow-y:auto;overflow-x:hidden}
@@ -113,7 +121,7 @@
     </div>
   </div>
 
-  <!-- 主页（内部滚动，到底自动停止） -->
+  <!-- 主页 -->
   <div id="main" class="hidden relative p-5 gradient-bg">
     <!-- 顶部灯笼 + 福字 -->
     <div class="absolute top-2 left-6 text-4xl text-year lantern-rock z-10">🏮</div>
@@ -131,7 +139,7 @@
       </div>
       <p class="text-white/95 text-xl font-medium mb-6">岁岁常欢愉 年年皆胜意</p>
 
-      <!-- ✅ 新增：2026新春倒计时 -->
+      <!-- 2026新春倒计时 -->
       <div class="max-w-xs mx-auto mb-8">
         <h3 class="text-year text-lg font-bold mb-3">⏳ 新春倒计时</h3>
         <div class="flex justify-center gap-3" id="countdown">
@@ -156,7 +164,7 @@
 
       <!-- 浪漫寄语卡片 -->
       <div class="relative z-20 max-w-md mx-auto bg-white/20 backdrop-blur-md rounded-2xl p-8 my-4 float-slow card-glow">
-        <h2 class="text-center text-year text-2xl font-bold mb-4">💖 图桉新春寄语 💖</h2>
+        <h2 class="text-center text-year text-2xl font-bold mb-4">💖 我们的新春寄语 💖</h2>
         <p class="text-center text-white/98 leading-relaxed text-lg">
           新春启序，喜乐长安<br>
           图与桉，相守岁岁年年<br>
@@ -169,81 +177,64 @@
       <!-- 游戏入口 -->
       <div class="relative z-20 max-w-xs mx-auto mt-4 text-center">
         <button id="gameStart" class="bg-love hover:bg-red-500 text-white px-10 py-5 rounded-full text-2xl font-bold shadow-2xl transition-all hover:scale-105 active:scale-95 card-glow">
-          <i class="fa fa-gamepad mr-3"></i> 情侣爱心大作战
+          <i class="fa fa-gamepad mr-3"></i> 爱心大作战
         </button>
-        <p class="text-white/90 text-lg mt-3 font-medium">和桉一起收集新春爱意 💝</p>
+        <p class="text-white/90 text-lg mt-3 font-medium">来收集我的新春爱意！ 💝</p>
       </div>
 
       <!-- 下滑提示 -->
       <div class="absolute bottom-5 left-1/2 -translate-x-1/2 text-center text-white/80 scroll-indicator">
-        <p class="text-sm mb-1">下滑查看更多甜蜜</p>
+        <p class="text-sm mb-1">下滑查看更多我们的专属浪漫</p>
         <i class="fa fa-angle-down text-2xl"></i>
       </div>
     </div>
 
-    <!-- 下滑内容：情侣甜蜜纪念册 -->
-    <div class="relative z-20 max-w-lg mx-auto my-16 px-4">
+    <!-- 新春放烟花专区 -->
+    <div class="relative z-20 max-w-lg mx-auto my-16 px-4 text-center">
       <h2 class="text-center text-[clamp(1.5rem,5vw,2.2rem)] font-bold text-year text-glow mb-8">
-        <i class="fa fa-book text-love mr-2"></i> 情侣甜蜜纪念册
+        <i class="fa fa-fire text-year mr-2"></i> 新春放烟花专区
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white/20 backdrop-blur-md rounded-2xl p-6 card-glow float-slow text-center">
-          <i class="fa fa-heart text-love text-4xl mb-4 beat-love"></i>
-          <h3 class="text-xl font-bold text-white mb-2">图的专属温柔</h3>
-          <p class="text-white/90">予桉岁岁年年，护桉朝朝暮暮</p>
-        </div>
-        <div class="bg-white/20 backdrop-blur-md rounded-2xl p-6 card-glow float-fast text-center">
-          <i class="fa fa-star text-year text-4xl mb-4 float-slow"></i>
-          <h3 class="text-xl font-bold text-white mb-2">桉的专属浪漫</h3>
-          <p class="text-white/90">伴图岁岁安安，爱图生生世世</p>
-        </div>
+      <div class="bg-white/20 backdrop-blur-md rounded-2xl p-8 card-glow float-slow">
+        <p class="text-lg text-white/95 mb-6">点击按钮，为爱的人绽放漫天烟花🎆</p>
+        <button id="fireBtn" class="fire-btn">
+          <i class="fa fa-rocket mr-2"></i> 点击燃放新春烟花
+        </button>
+        <p class="text-white/80 text-sm mt-4" id="fireTip">烟花绽放中，爱意满人间✨</p>
       </div>
     </div>
 
-    <!-- 新春许愿墙 -->
+    <!-- 爱心卡牌抽取 -->
+    <div class="relative z-20 max-w-lg mx-auto my-16 px-4 text-center">
+      <h2 class="text-center text-[clamp(1.5rem,5vw,2.2rem)] font-bold text-year text-glow mb-8">
+        <i class="fa fa-heart text-love mr-2"></i> 专属爱心卡牌抽取
+      </h2>
+      <div id="loveCard" class="love-card float-fast">
+        <div class="card-content text-xl font-bold text-white">
+          点击卡牌<br>抽取2026专属爱意
+        </div>
+      </div>
+      <p class="text-white/80 text-sm mt-4">每一张都是给你的的专属浪漫～</p>
+    </div>
+
+    <!-- 2026新春许愿墙（永久保存版） -->
     <div class="relative z-20 max-w-lg mx-auto my-16 px-4">
       <h2 class="text-center text-[clamp(1.5rem,5vw,2.2rem)] font-bold text-year text-glow mb-8">
         <i class="fa fa-star text-year mr-2"></i> 2026新春许愿墙
       </h2>
       <div class="bg-white/20 backdrop-blur-md rounded-2xl p-8 card-glow">
-        <div class="space-y-4">
-          <div class="flex items-start gap-3">
-            <i class="fa fa-check-circle text-year text-xl mt-1"></i>
-            <p class="text-lg text-white/95">愿图桉二人，平安喜乐，万事顺遂</p>
-          </div>
-          <div class="flex items-start gap-3">
-            <i class="fa fa-check-circle text-year text-xl mt-1"></i>
-            <p class="text-lg text-white/95">愿爱情长久，岁岁年年，永不分离</p>
-          </div>
-          <div class="flex items-start gap-3">
-            <i class="fa fa-check-circle text-year text-xl mt-1"></i>
-            <p class="text-lg text-white/95">愿2026马年，好运常伴，幸福加倍</p>
-          </div>
-          <div class="flex items-start gap-3">
-            <i class="fa fa-check-circle text-year text-xl mt-1"></i>
-            <p class="text-lg text-white/95">愿三餐四季，温柔有趣，爱意如初</p>
-          </div>
+        <!-- 预设+用户保存的愿望列表 -->
+        <div class="space-y-4 mb-6" id="wishList">
         </div>
-      </div>
-    </div>
 
-    <!-- 专属爱意宣言 -->
-    <div class="relative z-20 max-w-lg mx-auto my-16 px-4">
-      <h2 class="text-center text-[clamp(1.5rem,5vw,2.2rem)] font-bold text-year text-glow mb-8">
-        <i class="fa fa-heart text-love mr-2"></i> 专属爱意宣言
-      </h2>
-      <div class="bg-white/20 backdrop-blur-md rounded-2xl p-8 card-glow float-slow text-center">
-        <p class="text-[clamp(1.2rem,4vw,1.6rem)] text-white/98 leading-loose">
-          世界再大，有桉足矣<br>
-          岁月再长，陪图到老<br>
-          <span class="text-year font-bold text-xl">2026新春，我们依旧相爱</span><br>
-          图 ❤️ 桉，天长地久
-        </p>
-        <div class="mt-6 flex justify-center gap-3">
-          <span class="text-love text-2xl beat-love">❤️</span>
-          <span class="text-year text-2xl float-slow">🧧</span>
-          <span class="text-love text-2xl beat-love">❤️</span>
+        <!-- 自由新增许愿 -->
+        <div class="flex gap-2 mt-4">
+          <input id="wishInput" type="text" placeholder="写下你的新春愿望..." 
+            class="flex-1 bg-white/15 border border-white/30 rounded-lg px-4 py-2 text-white outline-none focus:border-year">
+          <button id="addWish" class="bg-year text-red-900 px-4 py-2 rounded-lg font-bold">
+            添加
+          </button>
         </div>
+        <p class="text-white/70 text-xs mt-2">愿望会永久保存，一直都在哦～</p>
       </div>
     </div>
 
@@ -323,20 +314,19 @@
             main.classList.remove('hidden')
             startHeartRain()
             startFuRain()
-            startFireworks()
-            startCountdown() // 启动倒计时
+            startCountdown()
+            loadWishes() // 加载保存的愿望
           },500)
         },600)
       }
     },800)
 
-    // ✅ 2026新春倒计时（2026年2月17日正月初一）
+    // 新春倒计时
     function startCountdown() {
       const target = new Date("2026-02-17 00:00:00").getTime();
       const timer = setInterval(() => {
         const now = new Date().getTime();
         const diff = target - now;
-        
         const day = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hour = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minute = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -384,21 +374,131 @@
       },800)
     }
 
-    // 烟花特效
+    // 强化版烟花
+    function createFirework() {
+      const fw = document.createElement('div')
+      const size = Math.random() * 120 + 100
+      const left = Math.random() * 100
+      const top = Math.random() * 90
+      const colors = ['#ffd700', '#ff3366', '#FFFF00', '#FF1493', '#FF4500', '#ff6b6b']
+      fw.className = 'firework-burst absolute rounded-full'
+      fw.style.cssText = `left:${left}%;top:${top}%;width:${size}px;height:${size}px;background:radial-gradient(circle,${colors[Math.floor(Math.random()*colors.length)]} 0%,transparent 85%);z-index:999`
+      document.body.appendChild(fw)
+      setTimeout(()=>fw.remove(),2000)
+    }
+
+    // 自动背景烟花
     function startFireworks() {
       setInterval(() => {
         if(main.classList.contains('hidden')) return
-        const fw = document.createElement('div')
-        const size = Math.random()*70+40
-        const left = Math.random()*100
-        const top = Math.random()*35
-        const colors = ['#ff3366','#ffd700','#ff6b6b','#ff69b4']
-        fw.className = 'firework-burst absolute rounded-full'
-        fw.style.cssText = `left:${left}%;top:${top}%;width:${size}px;height:${size}px;background:radial-gradient(circle,${colors[Math.floor(Math.random()*4)]} 0%,transparent 70%);z-index:0`
-        document.body.appendChild(fw)
-        setTimeout(()=>fw.remove(),1600)
-      },1800)
+        createFirework()
+      },2200)
     }
+    startFireworks()
+
+    // 手动放烟花
+    const fireBtn = document.getElementById('fireBtn')
+    const fireTip = document.getElementById('fireTip')
+    fireBtn.addEventListener('click',() => {
+      fireTip.textContent = "🎆 全屏烟花正在炸裂～"
+      for(let i=0;i<15;i++){
+        setTimeout(createFirework,i*100)
+      }
+      setTimeout(()=>{fireTip.textContent = "✨ 烟花绽放完毕，爱意铺满全屏！"},2000)
+    })
+
+    // 爱心卡牌抽取
+    const loveCard = document.getElementById('loveCard')
+    const cardContent = loveCard.querySelector('.card-content')
+    const loveTexts = [
+  "图的偏爱，只给桉",
+  "桉的温柔，只给图",
+  "2026，爱你依旧",
+  "岁岁年年，图桉相依",
+  "马年大吉，爱意永存",
+  "余生漫漫，有你足矣",
+  "图心向桉，岁岁欢喜",
+  "桉伴图行，年年平安",
+  "桉是图的岁岁年年",
+  "图是桉的朝朝暮暮",
+  "新春伊始，爱意不止",
+  "以爱为名，共赴马年",
+  "图心归桉，岁岁安然",
+  "桉暖图心，年年欢喜",
+  "2026，爱桉如初",
+  "伴图左右，岁岁无忧",
+  "烟火人间，图桉相伴",
+  "马年吉祥，爱意绵长",
+  "一屋两人，图桉四季",
+  "桉是星光，照亮图途",
+  "图是港湾，守护桉安",
+  "新春喜乐，爱无期限",
+  "岁岁年年，偏爱依然",
+  "马年好运，皆伴图桉",
+  "以爱为契，余生共期",
+  "图桉相守，万事顺遂",
+  "岁岁平安，爱意永恒"
+]
+
+    loveCard.addEventListener('click',() => {
+      loveCard.classList.add('card-flip')
+      setTimeout(()=>{
+        const randomText = loveTexts[Math.floor(Math.random()*loveTexts.length)]
+        cardContent.innerHTML = randomText
+      },400)
+      setTimeout(()=>{loveCard.classList.remove('card-flip')},800)
+    })
+
+    // ===================== 许愿墙 · 本地永久保存 =====================
+    const wishInput = document.getElementById('wishInput')
+    const addWish = document.getElementById('addWish')
+    const wishList = document.getElementById('wishList')
+
+    // 系统默认预设愿望
+    const defaultWishes = [
+      "愿我们岁岁平安，年年相伴",
+      "愿2026马年我们爱意更浓，永不分离",
+      "愿三餐四季温柔有趣，所求皆如愿",
+      "愿彼此守护，余生皆是欢喜"
+    ]
+
+    // 加载愿望（本地存储 + 预设）
+    function loadWishes() {
+      wishList.innerHTML = ''
+      // 读取本地保存的愿望
+      let savedWishes = JSON.parse(localStorage.getItem('tu_an_wishes')) || []
+      // 合并：默认愿望 + 用户保存的愿望
+      let allWishes = [...defaultWishes, ...savedWishes]
+      
+      // 渲染到页面
+      allWishes.forEach(wish => {
+        const newWish = document.createElement('div')
+        newWish.className = 'flex items-start gap-3'
+        newWish.innerHTML = `
+          <i class="fa fa-check-circle text-year text-xl mt-1"></i>
+          <p class="text-lg text-white/95">${wish}</p>
+        `
+        wishList.appendChild(newWish)
+      })
+    }
+
+    // 添加新愿望并保存
+    addWish.addEventListener('click',() => {
+      const wish = wishInput.value.trim()
+      if(wish){
+        // 读取本地数组
+        let savedWishes = JSON.parse(localStorage.getItem('tu_an_wishes')) || []
+        savedWishes.push(wish)
+        // 保存到本地
+        localStorage.setItem('tu_an_wishes', JSON.stringify(savedWishes))
+        // 重新加载
+        loadWishes()
+        wishInput.value = ''
+      }
+    })
+    wishInput.addEventListener('keypress',(e)=>{
+      if(e.key==='Enter') addWish.click()
+    })
 
     // 游戏逻辑
     const gameStart = document.getElementById('gameStart')
@@ -472,10 +572,10 @@
 
     function showResult(){
       finalScore.textContent = score
-      if(score<60)resultMsg.textContent='和桉桉一起加油，收集更多爱意~'
-      else if(score<120)resultMsg.textContent='超棒！我们的爱意满满哒'
-      else if(score<180)resultMsg.textContent='宝宝太厉害啦！'
-      else resultMsg.textContent='完美！祝愿我们天长地久，新春大吉'
+      if(score<60)resultMsg.textContent='加油呀，收集更多爱意~'
+      else if(score<120)resultMsg.textContent='超棒！爱意满满哒'
+      else if(score<180)resultMsg.textContent='我的宝宝太厉害啦！'
+      else resultMsg.textContent='完美！新春大吉，愿我们天长地久！'
       resultBox.classList.remove('hidden')
     }
 
